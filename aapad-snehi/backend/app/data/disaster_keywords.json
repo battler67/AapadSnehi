@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "expected_keyword_count": 53,
+  "hazards": [
+    {
+      "type": "flood",
+      "keywords": [
+        "flood",
+        "flash flood",
+        "urban flooding",
+        "river flooding",
+        "coastal flooding",
+        "river overflow",
+        "inundation",
+        "waterlogging",
+        "glacial lake outburst flood"
+      ],
+      "default_needs": ["rescue", "shelter", "transport"]
+    },
+    {
+      "type": "earthquake",
+      "keywords": ["earthquake", "seismic activity", "tremor", "aftershock"],
+      "default_needs": ["rescue", "medical", "shelter"]
+    },
+    {
+      "type": "landslide",
+      "keywords": ["landslide", "mudslide", "rockfall", "debris flow"],
+      "default_needs": ["rescue", "medical", "transport"]
+    },
+    {
+      "type": "cyclone",
+      "keywords": ["cyclone", "tropical cyclone", "hurricane", "typhoon", "storm surge", "cyclonic depression"],
+      "default_needs": ["rescue", "shelter", "transport"]
+    },
+    {
+      "type": "storm",
+      "keywords": ["thunderstorm", "severe storm", "lightning strike", "hailstorm", "tornado", "dust storm"],
+      "default_needs": ["shelter", "medical", "transport"]
+    },
+    {
+      "type": "heavy_rain",
+      "keywords": ["heavy rain", "torrential rain", "cloudburst", "extreme rainfall"],
+      "default_needs": ["rescue", "shelter", "transport"]
+    },
+    {
+      "type": "wildfire",
+      "keywords": ["wildfire", "forest fire", "bushfire", "grass fire"],
+      "default_needs": ["rescue", "medical", "shelter"]
+    },
+    {
+      "type": "heatwave",
+      "keywords": ["heatwave", "heat wave", "extreme heat"],
+      "default_needs": ["water", "medical"]
+    },
+    {
+      "type": "drought",
+      "keywords": ["drought", "water scarcity"],
+      "default_needs": ["water", "food"]
+    },
+    {
+      "type": "tsunami",
+      "keywords": ["tsunami", "tidal wave"],
+      "default_needs": ["rescue", "shelter", "medical"]
+    },
+    {
+      "type": "volcano",
+      "keywords": ["volcanic eruption", "volcano"],
+      "default_needs": ["rescue", "shelter", "medical"]
+    },
+    {
+      "type": "avalanche",
+      "keywords": ["avalanche", "snow slide"],
+      "default_needs": ["rescue", "medical", "transport"]
+    },
+    {
+      "type": "cold_wave",
+      "keywords": ["cold wave", "extreme cold"],
+      "default_needs": ["shelter", "medical", "food"]
+    },
+    {
+      "type": "infrastructure",
+      "keywords": ["building collapse", "bridge collapse", "dam failure"],
+      "default_needs": ["rescue", "medical", "transport"]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+.DS_Store
+Thumbs.db
+.env
+*.log
+
+# Python
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.venv/
+
+# Frontend
+node_modules/
+dist/
+coverage/
+
+# Local runtime data
+backend/data/*.db
+backend/data/uploads/*
+!backend/data/uploads/.gitkeep
+
+# Local build and tooling artifacts
+.artifacts/
+.dist/

@@ -1,0 +1,17 @@
+{
+  "name": "AapadSnehi Response Coordination",
+  "short_name": "AapadSnehi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a1024",
+  "theme_color": "#0a1024",
+  "description": "Trust-aware disaster signals and volunteer coordination.",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
