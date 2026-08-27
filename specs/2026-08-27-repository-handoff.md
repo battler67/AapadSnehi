@@ -47,6 +47,8 @@ Completed before publication:
 - No .env, nested .git, dependency, build, coverage, artifact, or database path is
   staged.
 
-Pending until publication:
+## Publication
 
-- Remote branch and commit verification after push.
+- Initial source snapshot: c36096da690dd6533e5e1b8b870c6a741926b045.
+- GitHub accepted the new main branch and configured origin/main tracking.
+- The initial local and remote main hashes matched exactly after the push.
