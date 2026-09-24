@@ -128,3 +128,7 @@ requirements and packaged artifacts required by the Dockerfile.
 - Local Docker verification was skipped at the user's request to prioritize the
   existing Render showcase URL; Render build and runtime checks are required
   before completion.
+- Render service inspection found the existing service builds from the outer
+  repository root with automatic deploys disabled. Added a root-level Docker
+  entrypoint and strict build-context allowlist that reuse the nested active
+  product without moving or duplicating its source tree.

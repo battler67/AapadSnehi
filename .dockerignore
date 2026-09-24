@@ -1,0 +1,23 @@
+# Render currently builds from the outer repository root. Keep its context to
+# the active product only; local data, credentials, experiments and caches stay out.
+**
+!Dockerfile
+!aapad-snehi/
+!aapad-snehi/backend/
+!aapad-snehi/backend/requirements.txt
+!aapad-snehi/backend/requirements-ml-deploy.txt
+!aapad-snehi/backend/app/
+!aapad-snehi/backend/app/**
+!aapad-snehi/backend/model_artifacts/
+!aapad-snehi/backend/model_artifacts/**
+!aapad-snehi/web/
+!aapad-snehi/web/package.json
+!aapad-snehi/web/package-lock.json
+!aapad-snehi/web/index.html
+!aapad-snehi/web/tsconfig.json
+!aapad-snehi/web/tsconfig.node.json
+!aapad-snehi/web/vite.config.ts
+!aapad-snehi/web/src/
+!aapad-snehi/web/src/**
+!aapad-snehi/web/public/
+!aapad-snehi/web/public/**
