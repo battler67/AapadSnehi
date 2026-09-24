@@ -34,6 +34,16 @@ GET /api/allocation-strategies
 
 The Admin strategy selector reads this endpoint, so newly registered algorithms appear without changing the component.
 
+## Strategy comparison
+
+| Strategy | Main objective | Strength | Trade-off |
+| --- | --- | --- | --- |
+| `balanced-greedy-v1` | Choose the best current pair, then recalculate | Fast and easy to follow step by step | An early choice can prevent a better complete plan |
+| `global-optimal-v1` | Maximize the sum of scores over the complete allocation | Best overall score for the selected pool | A match can be less intuitive in isolation because it protects a better overall combination |
+| `stable-matching-v1` | Produce mutually ranked matches with no blocking pair | Predictable and defensible when both sides have preferences | Does not guarantee the maximum total score |
+
+All strategies are deterministic decision-support tools. They use only the incidents and volunteers selected by the administrator, produce a preview first, and require explicit human confirmation before assignments are written.
+
 ## Default algorithm: `balanced-greedy-v1`
 
 ### Feasibility gates
@@ -85,6 +95,81 @@ allocation score = base fit
 If any selected incident has zero existing/planned coverage and at least one feasible remaining volunteer, the current iteration considers those coverable uncovered incidents first. After initial coverage, all feasible incidents compete using the marginal score. The highest-scoring pair is selected globally, its incident load is updated, and all remaining scores are recomputed. Ties use fit, incident priority, then stable incident/volunteer IDs, making identical inputs deterministic.
 
 This greedy method is transparent and fast for the bounded MVP input, but it is not globally optimal.
+
+## Shared capacity model for the experimental strategies
+
+The global-optimal and stable-matching strategies need a finite number of positions at each incident. They calculate an experimental response-slot target:
+
+```text
+target = min(5, max(
+  1,
+  number of distinct requested services,
+  ceil(severity / 2),
+  ceil(priority / 25)
+))
+
+open slots = max(0, target - existing response coverage)
+```
+
+This target is a bounded comparison heuristic, not an operational staffing requirement. It deliberately prevents one incident from absorbing the entire selected volunteer pool. A coordinator must still decide whether the resulting staffing is adequate.
+
+Both strategies use the existing `volunteer_fit()` score and add:
+
+```text
+allocation score = base fit
+                 + priority * 0.10
+                 + 12 for the first uncovered slot
+                 - 4 * slot index
+```
+
+The slot penalty represents diminishing value from adding several people to the same incident. Compatibility remains a hard gate: a volunteer must be available, must provide a requested registered service, and cannot be assigned to the same incident twice.
+
+## Global optimization: `global-optimal-v1`
+
+This strategy treats distribution as a maximum-weight assignment problem. It asks: "Which complete set of pairings has the highest total allocation score?"
+
+### How it works
+
+1. Expand each incident into its open response slots. For example, an incident with three open slots becomes three assignable columns.
+2. Calculate the allocation score for every compatible volunteer/slot pair.
+3. Add a private unassigned option for every volunteer. This ensures the optimizer never forces an incompatible match.
+4. Convert scores into costs and run the Hungarian assignment algorithm.
+5. Return only compatible real-slot matches; return a reason for every unassigned volunteer.
+
+Example score table:
+
+| | Incident A | Incident B |
+| --- | ---: | ---: |
+| Volunteer 1 | 100 | 99 |
+| Volunteer 2 | 98 | 1 |
+
+A greedy first step may choose Volunteer 1 for A and leave Volunteer 2 with B, totaling 101. The global strategy chooses Volunteer 1 for B and Volunteer 2 for A, totaling 197. The first individual match is slightly lower, but the complete plan is much stronger.
+
+The implementation is polynomial-time Hungarian assignment, approximately `O(n^3)` after incident slots and unassigned options are constructed. That is practical within the API's bounded pool of at most 50 selected volunteers. It optimizes the documented score; it does not calculate safe routes, predict field conditions, or prove that the slot target is sufficient.
+
+## Stable matching: `stable-matching-v1`
+
+This strategy uses capacity-aware deferred acceptance. It asks: "Can we produce compatible matches where no unmatched volunteer and incident would both prefer each other over their current result?"
+
+### How it works
+
+1. Each available volunteer ranks compatible incidents using allocation score, fit, incident priority, and stable IDs for tie-breaking.
+2. Every unmatched volunteer proposes to their highest-ranked incident not yet tried.
+3. Each incident temporarily retains its best-fitting volunteers up to its open capacity and rejects the rest.
+4. Rejected volunteers propose to their next choice.
+5. The process stops when nobody can make another proposal.
+
+Incidents rank volunteers primarily by capability/proximity fit, while volunteers rank incidents by the full allocation score. "Stable" has a precise, limited meaning here: there is no compatible volunteer/incident pair that would mutually prefer each other under these programmed rankings. It does not mean that an assignment is safe, permanent, accepted by the volunteer, or optimal for total score.
+
+Deferred acceptance requires at most one proposal per compatible volunteer/incident pair, approximately `O(V * I)` proposals plus small capacity-list sorting. It is useful when coordinators want consistent, explainable pairings and fewer obvious preference conflicts.
+
+## Choosing an experiment
+
+- Use **Balanced greedy** for a transparent baseline and rapid coverage.
+- Use **Global optimum** to compare the best total score across the whole selected pool.
+- Use **Stable matching** when mutually ranked compatibility and predictable reassignment behavior are more important than the maximum score.
+
+Run the same selected incidents and volunteers through multiple preview strategies to compare them. Confirm only one plan. After a commit, availability and coverage change, so later previews correctly use the new operational state.
 
 ### Unassigned explanations
 

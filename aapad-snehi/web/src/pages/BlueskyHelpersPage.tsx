@@ -31,12 +31,12 @@ export function BlueskyHelpersPage() {
       <PageHeader
         eyebrow="Bluesky adapter"
         title="Find public disaster helpers"
-        description="Run the server-side Bluesky search and list public authors whose posts explicitly offer disaster help. Ready for the quick demo."
+        description="Find explicit offers, active aid updates, institutional support and lower-confidence fundraising leads for human review."
         actions={<span className="demo-admin-badge"><Radio size={15} />Read-only search</span>}
       />
 
       <Notice tone="warning">
-        This uses transparent help-offer keywords, not Hugging Face, Transformers, or sentiment AI. A match is only a lead from a public post—not proof that the person is verified, available, or consenting to contact.
+        Assistance intent uses transparent matching rules. When configured, public post text is sent to a hosted Twitter-RoBERTa model to label tone as positive, neutral, or negative; sentiment never decides whether someone is a helper. A match is not proof that an account is verified, currently available, or consenting to contact.
       </Notice>
       {error && <Notice tone="danger">{error}</Notice>}
 
@@ -60,8 +60,14 @@ export function BlueskyHelpersPage() {
         {result && (
           <div className="bluesky-results">
             <div className="panel-title">
-              <div><p className="eyebrow"><span />Latest scan</p><h2>Useful-intent authors</h2></div>
+              <div><p className="eyebrow"><span />Latest scan</p><h2>Potential assistance leads</h2></div>
               <span>{result.matchCount} matches from {result.scannedCount} posts</span>
+            </div>
+            <div className="need-row" aria-label="Sentiment summary for matched leads">
+              <span>Positive {result.sentimentSummary.positive}</span>
+              <span>Neutral {result.sentimentSummary.neutral}</span>
+              <span>Negative {result.sentimentSummary.negative}</span>
+              {result.sentimentSummary.unavailable > 0 && <span>Unavailable {result.sentimentSummary.unavailable}</span>}
             </div>
             {result.authors.length ? (
               <div className="bluesky-author-list">
@@ -78,15 +84,24 @@ export function BlueskyHelpersPage() {
                     <blockquote>{author.postText}</blockquote>
                     <div className="need-row">
                       <span>{titleCase(author.disasterType)}</span>
+                      <span>{titleCase(author.intentCategory)}</span>
+                      <span>{titleCase(author.confidence)} confidence</span>
+                      <span>
+                        Sentiment {titleCase(author.sentiment.label)}
+                        {author.sentiment.score == null ? "" : ` ${Math.round(author.sentiment.score * 100)}%`}
+                      </span>
                       {author.capabilities.map((item) => <span key={item}>{titleCase(item)}</span>)}
                     </div>
                     <small>Matched: {author.matchedTerms.join(", ")}</small>
+                    {author.sentiment.status === "available" && <small>Advisory sentiment model: {author.sentiment.model}</small>}
+                    {author.sentiment.status !== "available" && <small>Sentiment unavailable; assistance matching still completed.</small>}
+                    {author.disasterContext === "query" && <small>Disaster context comes from your search query; confirm it in the source thread.</small>}
                     {author.postUrl && <a className="button secondary helper-source-link" href={author.postUrl} target="_blank" rel="noreferrer noopener"><ExternalLink size={14} />Open public post</a>}
                   </article>
                 ))}
               </div>
             ) : (
-              <div className="empty-inline"><Radio size={20} />No explicit offers of disaster help were found in this bounded search.</div>
+              <div className="empty-inline"><Radio size={20} />No assistance signals were found in this bounded search.</div>
             )}
           </div>
         )}
@@ -110,6 +125,9 @@ export function BlueskyHelpersPage() {
                 <blockquote>{author.postText}</blockquote>
                 <div className="need-row">
                   <span>{titleCase(author.disasterType)}</span>
+                  <span>{titleCase(author.intentCategory)}</span>
+                  <span>{titleCase(author.confidence)} confidence</span>
+                  <span>Sentiment {titleCase(author.sentiment.label)}</span>
                   {author.capabilities.map((item) => <span key={item}>{titleCase(item)}</span>)}
                 </div>
                 <small>Matched: {author.matchedTerms.join(", ")}</small>

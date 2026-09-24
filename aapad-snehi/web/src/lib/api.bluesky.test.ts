@@ -14,6 +14,7 @@ describe("Bluesky scan API", () => {
           query: "floods in india",
           scannedCount: 1,
           matchCount: 0,
+          sentimentSummary: { positive: 0, neutral: 0, negative: 0, unavailable: 0 },
           authors: [],
         }),
         { status: 200, headers: { "Content-Type": "application/json" } },
@@ -27,6 +28,7 @@ describe("Bluesky scan API", () => {
     expect(fetchMock.mock.calls[0][1]).toMatchObject({
       method: "POST",
       body: JSON.stringify({ query: "floods in india" }),
+      signal: expect.any(AbortSignal),
       headers: expect.not.objectContaining({ Authorization: expect.anything() }),
     });
   });

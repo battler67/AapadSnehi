@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Generator
 
-from sqlalchemy import create_engine, inspect, text
+from sqlalchemy import create_engine, event, inspect, text
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
@@ -13,8 +13,19 @@ class Base(DeclarativeBase):
     pass
 
 
-connect_args = {"check_same_thread": False} if settings.database_url.startswith("sqlite") else {}
+connect_args = {"check_same_thread": False, "timeout": 30} if settings.database_url.startswith("sqlite") else {}
 engine = create_engine(settings.database_url, connect_args=connect_args, future=True)
+
+
+if settings.database_url.startswith("sqlite"):
+    @event.listens_for(engine, "connect")
+    def _configure_sqlite(dbapi_connection, _connection_record) -> None:
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA journal_mode=WAL")
+        cursor.execute("PRAGMA busy_timeout=30000")
+        cursor.close()
+
+
 SessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False, class_=Session)
 
 
@@ -95,10 +106,13 @@ def apply_schema_compatibility_migrations(target_engine: Engine = engine) -> Non
 
 def initialize_database() -> None:
     from . import models  # noqa: F401
+    from .flood import models as flood_models  # noqa: F401
+    from .flood.migration import migrate_coordinates
     from .seed import seed_database
 
     settings.upload_dir.mkdir(parents=True, exist_ok=True)
     Base.metadata.create_all(bind=engine)
+    migrate_coordinates(engine)
     apply_schema_compatibility_migrations()
     with SessionLocal() as db:
         seed_database(db)

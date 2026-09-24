@@ -14,6 +14,14 @@ import type {
   Source,
   Volunteer,
   VolunteerInput,
+  EdgeCatalog,
+  EdgeRiskEvent,
+  EdgeSimulationRun,
+  EdgeSnapshot,
+  MLModelCatalog,
+  MLPredictionRequest,
+  MLPredictionResult,
+  MLSyntheticScenario,
 } from "../types";
 
 export const API_BASE = (import.meta.env.VITE_API_URL || "http://localhost:8000").replace(/\/$/, "");
@@ -45,6 +53,9 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
       },
     });
   } catch (error) {
+    if (error instanceof DOMException && (error.name === "TimeoutError" || error.name === "AbortError")) {
+      throw new ApiError("The hosted service took too long to respond. It may be waking from sleep; please retry.");
+    }
     throw new ApiError(error instanceof Error ? error.message : "The API is unreachable");
   }
   if (!response.ok) {
@@ -76,6 +87,7 @@ export const api = {
     request<BlueskyScanResult>("/api/bluesky/scan", {
       method: "POST",
       body: JSON.stringify({ query }),
+      signal: AbortSignal.timeout(60_000),
     }),
   suggestions: (incidentId: number) =>
     request<Volunteer[]>(`/api/incidents/${incidentId}/suggestions`),
@@ -114,5 +126,31 @@ export const api = {
     request<IngestionRun[]>("/api/ingestion/run", {
       method: "POST",
       body: JSON.stringify({ source_ids: [], live }),
+    }),
+  edgeCatalog: () => request<EdgeCatalog>("/api/edge/catalog"),
+  edgeSnapshot: () => request<EdgeSnapshot>("/api/edge/snapshot"),
+  edgeDeviceHistory: (deviceId: string, limit = 90) =>
+    request<Array<{ timestamp: string; measurements: Record<string, { value: number; unit: string }> }>>(
+      `/api/edge/devices/${encodeURIComponent(deviceId)}/observations?limit=${limit}`,
+    ),
+  startEdgeSimulation: (payload: { scenario: string; numberOfDevices: number; seed: number; region: string; speedMultiplier: number; timestepSeconds: number }) =>
+    request<EdgeSimulationRun>("/api/edge/simulations", { method: "POST", body: JSON.stringify(payload) }),
+  controlEdgeSimulation: (runId: string, action: "pause" | "resume" | "stop" | "reset") =>
+    request<EdgeSimulationRun>(`/api/edge/simulations/${encodeURIComponent(runId)}/${action}`, { method: "POST" }),
+  edgeEvent: (eventId: number) => request<EdgeRiskEvent>(`/api/edge/events/${eventId}`),
+  mlModels: () => request<MLModelCatalog>("/api/v1/ml/models", { signal: AbortSignal.timeout(120_000) }),
+  mlHealth: () => request<{ status: string; models: Record<string, { available: boolean; status: string; detail: string }>; loadedModelIds: string[] }>("/api/v1/ml/health", { signal: AbortSignal.timeout(30_000) }),
+  mlScenario: (modelId: string, scenarioId: string) =>
+    request<MLSyntheticScenario>(`/api/v1/ml/models/${encodeURIComponent(modelId)}/scenarios/${encodeURIComponent(scenarioId)}`, { signal: AbortSignal.timeout(60_000) }),
+  mlPredict: (payload: MLPredictionRequest) =>
+    request<MLPredictionResult>("/api/v1/ml/predict", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(120_000),
+    }),
+  reviewEdgeEvent: (eventId: number, action: "acknowledge" | "promote_to_incident" | "dismiss", reviewerName: string, confirmDemoOnly = false) =>
+    request<EdgeRiskEvent>(`/api/edge/events/${eventId}/review`, {
+      method: "POST",
+      body: JSON.stringify({ action, reviewerName, confirmDemoOnly, note: "Reviewed in the Edge Early Warning demo console" }),
     }),
 };

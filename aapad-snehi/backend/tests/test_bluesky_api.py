@@ -27,6 +27,9 @@ def test_bluesky_demo_scan_returns_author_ids(
                     post_text="Assam flood: our team can help with food.",
                     posted_at=datetime.now(timezone.utc),
                     disaster_type="flood",
+                    disaster_context="post",
+                    intent_category="explicit_offer",
+                    confidence="high",
                     matched_terms=("can help",),
                     capabilities=("food", "volunteering"),
                 ),
@@ -49,3 +52,6 @@ def test_bluesky_demo_scan_returns_author_ids(
     assert response.json()["scannedCount"] == 3
     assert response.json()["matchCount"] == 1
     assert response.json()["authors"][0]["id"] == "did:plc:api-helper"
+    assert response.json()["authors"][0]["confidence"] == "high"
+    assert response.json()["authors"][0]["disasterContext"] == "post"
+    assert response.json()["sentimentSummary"]["unavailable"] == 1

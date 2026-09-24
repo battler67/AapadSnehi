@@ -4,11 +4,13 @@ import { APP_ROUTES, normalizeAppPath } from "./routes";
 describe("audience routes", () => {
   it("keeps each audience on a distinct canonical path", () => {
     expect(new Set([APP_ROUTES.users, APP_ROUTES.volunteers, APP_ROUTES.safety, APP_ROUTES.admin, APP_ROUTES.blueskyHelpers]).size).toBe(5);
-    expect(APP_ROUTES.users).toBe("/users");
+    expect(APP_ROUTES.users).toBe(APP_ROUTES.floodReport);
     expect(APP_ROUTES.volunteers).toBe("/volunteers");
     expect(APP_ROUTES.safety).toBe("/safety");
     expect(APP_ROUTES.admin).toBe("/admin");
     expect(APP_ROUTES.blueskyHelpers).toBe("/bluesky-helpers");
+    expect(APP_ROUTES.edgeEarlyWarning).toBe("/edge-early-warning");
+    expect(APP_ROUTES.mlPredictions).toBe("/ml-predictions");
   });
 
   it("normalizes trailing slashes and legacy public links", () => {

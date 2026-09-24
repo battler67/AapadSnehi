@@ -1,0 +1,8 @@
+# Optional local research inference dependencies. Install after requirements.txt.
+# PyTorch wheels are platform-specific; the broad bound keeps CPU/GPU selection local.
+pandas>=2.3,<3
+# Match the environment recorded with the trusted serialized flood artifacts.
+scikit-learn==1.7.1
+joblib==1.5.2
+xgboost==3.0.4
+torch>=2.6,<3

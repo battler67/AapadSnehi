@@ -1,0 +1,109 @@
+{
+  "hazard": "landslide",
+  "modelVersion": "landslide-demo-v1",
+  "artifactFormat": "transparent-logistic-json-v1",
+  "featureOrder": [
+    "soilMoisturePct_current",
+    "poreWaterPressureKpa_current",
+    "poreWaterPressureKpa_15m_slope",
+    "tilt_vector_deg",
+    "vibrationRmsMmS_current",
+    "rainfall_accumulation_60m"
+  ],
+  "means": [
+    58.9429900512,
+    66.9878271428,
+    0.8077940803,
+    0.7082515444,
+    9.2257452744,
+    28.7853069511
+  ],
+  "scales": [
+    17.241957755,
+    58.921334751,
+    1.1843284702,
+    1.0388043092,
+    12.2185565401,
+    34.6926232115
+  ],
+  "coefficients": [
+    1.8460221294,
+    1.487686158,
+    1.4419256939,
+    1.7780083622,
+    1.8752574298,
+    1.6744863631
+  ],
+  "intercept": -6.2023662049,
+  "demoThresholds": {
+    "watch": 0.35,
+    "warning": 0.6,
+    "critical": 0.82,
+    "exitWatch": 0.25,
+    "exitWarning": 0.5,
+    "exitCritical": 0.72,
+    "nearbyKm": 10
+  },
+  "syntheticGenerator": {
+    "normalCenter": [
+      48,
+      30,
+      0.03,
+      0.05,
+      1.2,
+      6
+    ],
+    "eventCenter": [
+      94,
+      185,
+      3.2,
+      2.8,
+      34,
+      98
+    ],
+    "scenarioGroups": 90,
+    "windowsPerGroup": 12,
+    "positiveWindowStartsAt": 6
+  },
+  "training": {
+    "seed": 20260903,
+    "splitPolicy": "scenario-group 70/15/15",
+    "trainScenarioGroups": 62,
+    "validationScenarioGroups": 14,
+    "testScenarioGroups": 14,
+    "trainWindows": 744,
+    "validationWindows": 168,
+    "testWindows": 168,
+    "syntheticOnly": true,
+    "configSha256": "611bb064ee0a185a3d3acb172d7fd471b8782b6f5a4108d5df965974aac03028"
+  },
+  "metrics": {
+    "rulesOnly": {
+      "precision": 1.0,
+      "recall": 0.933333,
+      "f1": 0.965517,
+      "rocAuc": 1.0,
+      "brierScore": 0.01455
+    },
+    "classifierOnly": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "rocAuc": 1.0,
+      "brierScore": 0.001907
+    },
+    "rulesPlusClassifier": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "rocAuc": 1.0,
+      "brierScore": 0.005676,
+      "falseAlarmsPerSimulatedDay": 0.0,
+      "missedEventRate": 0.0,
+      "averageDetectionLeadTimeMinutes": 0.0
+    },
+    "chronosAnomalyFeatures": {
+      "status": "not_run"
+    }
+  }
+}

@@ -14,10 +14,17 @@ The MVP includes:
 - News-to-portal normalization, deduplication, per-source failures and ingestion run history.
 - A reviewable 53-keyword disaster taxonomy with canonical hazard types and response needs for volunteer matching.
 - SQLite for zero-infrastructure local development and a documented PostgreSQL/PostGIS production path.
+- A registry-aware, deterministic multi-hazard edge-device lab with independent flood, landslide and tsunami risk engines, evidence fusion, CAP test export and explicit human review. Every warning is labelled **SIMULATED / DEMO ONLY**.
 
 All included incident and volunteer records are clearly labelled demonstration data. The app does not publish citizen or news-derived signals as official warnings.
 
 ## Run locally
+
+Citizen flood reporting and protected rescue coordination are available at
+`/flood/report` and `/flood`. See [Citizen flood and rescue guide](docs/CITIZEN_FLOOD_RESCUE.md)
+for migration, private reporter access, coordinator/responder provisioning, isolated
+synthetic demo, offline behavior and verification. These new operational records are
+protected independently; the older prototype Admin/Volunteer routes remain public.
 
 Requirements: Node.js 22+, npm 11+, and Python 3.11+.
 
@@ -46,6 +53,8 @@ npm run dev
 
 Open the application at `http://localhost:5173`. If the API is unavailable, the frontend intentionally remains usable with deterministic demo data and marks the header `Demo data`.
 
+For the edge early-warning judge flow, install both dependency sets once and run `powershell -ExecutionPolicy Bypass -File .\scripts\start-edge-demo.ps1` from this directory. Then open `/edge-early-warning`. See [Edge Early Warning](docs/EDGE_EARLY_WARNING.md), [data schema](docs/EDGE_DATA_SCHEMA.md), and the [model card](docs/MULTI_HAZARD_MODEL_CARD.md).
+
 Audience pages are intentionally public in the current prototype:
 
 - Users and incident reporting: `http://localhost:5173/users`
@@ -70,7 +79,7 @@ python -m uvicorn app.main:app --reload --port 8000
 
 Then use **Refresh live signals** on the pipeline page or call `POST /api/ingestion/run` with `{"source_ids": [], "live": true}`. ReliefWeb requires a pre-approved app name. Serper returns at most five India-focused results after disaster and location filtering. Google News RSS uses the configured India headlines, AI and India technology feeds; unrelated entries are discarded. SACHET parses the single national `rss_india.xml` feed, follows each linked CAP document, and excludes cancelled, non-public, test/exercise, and expired alerts. Provider failures are recorded independently and do not stop other adapters.
 
-The dedicated **Bluesky helpers** page at `http://localhost:5173/bluesky-helpers` runs the notebook-style `atproto` provider search on the server. Open the page, enter a query, and select **Run Bluesky scan**—the quick demo has no portal sign-in or role gate. The server searches at most `AAPAD_BLUESKY_MAX_POSTS` public posts (default `10`) and displays unique author DIDs/handles only when the post contains a recognized disaster term and an explicit offer-to-help phrase. It uses deterministic keywords—no Hugging Face, Transformers, model download, sentiment score, automated contact, or volunteer registration. Put the separate Bluesky provider credentials in the ignored `.env`, not in source or the notebook; use a Bluesky app password and rotate the credential already exposed in the notebook before reuse.
+The dedicated **Bluesky helpers** page at `http://localhost:5173/bluesky-helpers` runs the notebook-style `atproto` provider search on the server. Open the page, enter a query, and select **Run Bluesky scan**—the quick demo has no portal sign-in or role gate. The server searches at most `AAPAD_BLUESKY_MAX_POSTS` public posts (default `10`) and displays unique author DIDs/handles for explicit offers, active aid, institutional support, and low-confidence fundraising or donation leads. A recognized hazard in the user's query may supply visibly labelled context when an assistance post omits the hazard term. Deterministic rules decide assistance intent; optional hosted Twitter-RoBERTa inference separately labels the tone positive, neutral, or negative and never changes helper matching. No model weights or PyTorch runtime are downloaded. Put provider credentials in the ignored `.env`, never source or the notebook.
 
 Search and news results remain unverified operational signals. SACHET records retain official CAP provenance; that trust label does not mean a forecast has already caused damage or that volunteers should be dispatched without operational review. A successful refresh places up to five current external incidents on the dashboard. Search/news items must match the 53-keyword disaster taxonomy and contain usable location evidence, while SACHET can also use a meaningful official CAP event plus its state context. Detected hazards add conservative default response needs so the existing allocation endpoint can rank volunteers by capability, availability, distance, and urgency. Keep real provider credentials out of source and `.env.example`.
 
@@ -124,8 +133,8 @@ npm run build
 
 Current verified baseline:
 
-- Backend: 202 tests.
-- Frontend: 11 tests.
+- Backend: 270 tests.
+- Frontend: 17 tests across 8 files.
 - TypeScript and Vite production build.
 
 ## Important limitations
@@ -137,4 +146,5 @@ Current verified baseline:
 - Hosted vision screening does not establish image authenticity, location, recency, causation, or disaster severity. It is advisory screening with a recorded provider/model/prompt/evidence trail and human override, not official verification.
 
 See [Architecture and research](docs/architecture-and-research.md) for provider choices, production topology and the AI/ML path. See [Adapter development](docs/adapter-development.md) for the registry contract, disaster taxonomy, trust rules, snapshot behavior, and extension steps. See [Bluesky helper adapter](docs/bluesky-helper-adapter.md) for credential setup, intent rules, and the scan page. See [SACHET CAP adapter](docs/sachet-cap-adapter.md) for national polling and CAP parsing. See [Image report triage](docs/image-report-triage.md) for image screening, failure behavior, moderation, privacy, and provider replacement.
+See [Trained disaster-model integration](docs/TRAINED_MODEL_INTEGRATION.md) for the `/ml-predictions` page, versioned inference API, exact preprocessing, optional dependencies, synthetic scenarios, and safety limitations.
 See [Volunteer allocation strategies](docs/allocation-strategies.md) for the default distribution formula, preview/confirmation contract, safety invariants, and instructions for registering a replacement algorithm.

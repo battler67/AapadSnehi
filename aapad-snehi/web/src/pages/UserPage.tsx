@@ -110,6 +110,7 @@ export function UserPage() {
 
   return (
     <div className="content page-space">
+      <div className="glass-panel" style={{ padding: "1rem", marginBottom: "1rem" }}><a href="/flood/report">Flooding or people needing rescue? Submit a location-confirmed flood report →</a><p>Text-only requests, optional photos, precise address details and private rescue coordination.</p></div>
       <PageHeader eyebrow="Community users" title="Report an incident from the ground" description="Capture recent evidence, preserve its location, and tell response teams what people need." />
       <form className="report-layout" onSubmit={submit}>
         <div className="form-stack">

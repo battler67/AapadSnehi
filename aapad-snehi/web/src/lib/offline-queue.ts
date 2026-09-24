@@ -7,12 +7,15 @@ type QueuedReport = {
   fields: Array<[string, string | Blob]>;
 };
 
-function openDatabase(): Promise<IDBDatabase> {
+export function openDatabase(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open(DB_NAME, 1);
+    const request = indexedDB.open(DB_NAME, 2);
     request.onupgradeneeded = () => {
       if (!request.result.objectStoreNames.contains(STORE)) {
         request.result.createObjectStore(STORE, { keyPath: "id" });
+      }
+      if (!request.result.objectStoreNames.contains("flood-drafts")) {
+        request.result.createObjectStore("flood-drafts", { keyPath: "id" });
       }
     };
     request.onsuccess = () => resolve(request.result);

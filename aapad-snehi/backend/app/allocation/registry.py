@@ -22,6 +22,12 @@ def get_strategy(key: str) -> AllocationStrategy:
 
 def strategy_metadata() -> list[dict[str, str]]:
     return [
-        {"key": strategy.key, "name": strategy.name, "version": strategy.version}
+        {
+            "key": strategy.key,
+            "name": strategy.name,
+            "version": strategy.version,
+            "summary": getattr(strategy, "summary", "Deterministic allocation strategy."),
+            "bestFor": getattr(strategy, "best_for", "Administrator-reviewed planning."),
+        }
         for strategy in sorted(_STRATEGIES.values(), key=lambda item: item.key)
     ]

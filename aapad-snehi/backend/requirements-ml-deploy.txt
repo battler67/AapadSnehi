@@ -1,0 +1,5 @@
+# Runtime needed by the two flood models bundled with the hosted demo.
+# scikit-learn is pinned in requirements.txt to the artifact training version.
+pandas==2.3.2
+joblib==1.5.2
+xgboost==3.0.4

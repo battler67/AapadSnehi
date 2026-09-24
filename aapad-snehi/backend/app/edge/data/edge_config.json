@@ -1,0 +1,67 @@
+{
+  "version": "edge-demo-config-v1",
+  "notice": "SIMULATED / DEMO ONLY. Ranges and thresholds are hackathon assumptions, not official scientific warning levels.",
+  "properties": {
+    "rainfallMmH": {"unit": "mm/h", "min": 0, "max": 500, "warning": 45},
+    "cumulativeRainfallMm": {"unit": "mm", "min": 0, "max": 3000, "warning": 180},
+    "waterLevelM": {"unit": "m", "min": -2, "max": 30, "warning": 5.5},
+    "waterLevelRiseMPerH": {"unit": "m/h", "min": -10, "max": 20, "warning": 0.8},
+    "flowVelocityMps": {"unit": "m/s", "min": 0, "max": 25, "warning": 3.5},
+    "soilMoisturePct": {"unit": "%", "min": 0, "max": 100, "warning": 82},
+    "temperatureC": {"unit": "Cel", "min": -60, "max": 70},
+    "atmosphericPressureHpa": {"unit": "hPa", "min": 800, "max": 1100},
+    "poreWaterPressureKpa": {"unit": "kPa", "min": -20, "max": 1000, "warning": 120},
+    "groundTiltXDeg": {"unit": "deg", "min": -45, "max": 45, "warning": 1.2},
+    "groundTiltYDeg": {"unit": "deg", "min": -45, "max": 45, "warning": 1.2},
+    "vibrationRmsMmS": {"unit": "mm/s", "min": 0, "max": 500, "warning": 18},
+    "slopeAngleDeg": {"unit": "deg", "min": 0, "max": 90, "warning": 38},
+    "bottomPressureKpa": {"unit": "kPa", "min": 0, "max": 120000},
+    "seaLevelAnomalyM": {"unit": "m", "min": -20, "max": 20, "warning": 0.5},
+    "seaLevelRateMPerMin": {"unit": "m/min", "min": -10, "max": 10, "warning": 0.08},
+    "waveHeightM": {"unit": "m", "min": 0, "max": 60, "warning": 4},
+    "waterTemperatureC": {"unit": "Cel", "min": -5, "max": 50},
+    "earthquakeMagnitude": {"unit": "Mw", "min": 0, "max": 10, "warning": 6.5},
+    "earthquakeDepthKm": {"unit": "km", "min": 0, "max": 800},
+    "earthquakeDistanceKm": {"unit": "km", "min": 0, "max": 20000, "warning": 800}
+  },
+  "profiles": {
+    "river_gauge": {
+      "purposes": ["flood"],
+      "capabilities": ["rainfallMmH", "cumulativeRainfallMm", "waterLevelM", "waterLevelRiseMPerH", "flowVelocityMps", "soilMoisturePct", "temperatureC", "atmosphericPressureHpa"]
+    },
+    "hillslope_station": {
+      "purposes": ["landslide"],
+      "capabilities": ["rainfallMmH", "cumulativeRainfallMm", "soilMoisturePct", "poreWaterPressureKpa", "groundTiltXDeg", "groundTiltYDeg", "vibrationRmsMmS", "slopeAngleDeg", "temperatureC"]
+    },
+    "coastal_buoy": {
+      "purposes": ["tsunami"],
+      "capabilities": ["bottomPressureKpa", "seaLevelAnomalyM", "seaLevelRateMPerMin", "waveHeightM", "waterTemperatureC", "earthquakeMagnitude", "earthquakeDepthKm", "earthquakeDistanceKm"]
+    }
+  },
+  "regions": {
+    "assam_river": {"name": "Brahmaputra, Assam", "latitude": 26.1445, "longitude": 91.7362, "elevationM": 54, "context": {"flood": 1.0, "landslide": 0.35, "tsunami": 0.0}},
+    "uttarakhand_hills": {"name": "Uttarkashi, Uttarakhand", "latitude": 30.7268, "longitude": 78.4354, "elevationM": 1158, "context": {"flood": 0.55, "landslide": 1.0, "tsunami": 0.0}},
+    "odisha_coast": {"name": "Puri coast, Odisha", "latitude": 19.8135, "longitude": 85.8312, "elevationM": 5, "context": {"flood": 0.55, "landslide": 0.0, "tsunami": 1.0}},
+    "visakhapatnam": {"name": "Visakhapatnam, Andhra Pradesh", "latitude": 17.6868, "longitude": 83.2185, "elevationM": 12, "context": {"flood": 0.65, "landslide": 0.6, "tsunami": 1.0}}
+  },
+  "hazards": {
+    "flood": {"watch": 0.35, "warning": 0.60, "critical": 0.82, "exitWatch": 0.25, "exitWarning": 0.50, "exitCritical": 0.72, "nearbyKm": 25},
+    "landslide": {"watch": 0.35, "warning": 0.60, "critical": 0.82, "exitWatch": 0.25, "exitWarning": 0.50, "exitCritical": 0.72, "nearbyKm": 10},
+    "tsunami": {"watch": 0.35, "warning": 0.60, "critical": 0.82, "exitWatch": 0.25, "exitWarning": 0.50, "exitCritical": 0.72, "nearbyKm": 200}
+  },
+  "fusion": {"classifierWeight": 0.45, "ruleWeight": 0.40, "anomalyWeight": 0.15},
+  "windowsMinutes": [5, 15, 30, 60],
+  "scenarios": [
+    {"id": "normal-operation", "label": "Normal operation", "hazard": null, "durationSteps": 60},
+    {"id": "flood-gradual-001", "label": "Gradual river flood", "hazard": "flood", "durationSteps": 75},
+    {"id": "flash-flood-001", "label": "Flash flood", "hazard": "flood", "durationSteps": 55},
+    {"id": "landslide-rain-001", "label": "Rainfall-triggered landslide", "hazard": "landslide", "durationSteps": 70},
+    {"id": "landslide-slope-001", "label": "Slope movement without heavy rain", "hazard": "landslide", "durationSteps": 65},
+    {"id": "tsunami-seismic-001", "label": "Tsunami-like anomaly after seismic event", "hazard": "tsunami", "durationSteps": 60},
+    {"id": "sensor-failure-001", "label": "Sensor failure", "hazard": null, "durationSteps": 50},
+    {"id": "outage-recovery-001", "label": "Communication outage and recovery", "hazard": "flood", "durationSteps": 65},
+    {"id": "false-spike-001", "label": "False spike", "hazard": "flood", "durationSteps": 50},
+    {"id": "conflicting-sensors-001", "label": "Conflicting sensors", "hazard": "flood", "durationSteps": 60},
+    {"id": "event-recovery-001", "label": "Event recovery", "hazard": "flood", "durationSteps": 85}
+  ]
+}

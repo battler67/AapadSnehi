@@ -27,6 +27,8 @@ class BalancedGreedyStrategy:
     key = "balanced-greedy-v1"
     name = "Balanced greedy distribution"
     version = "1.0.0"
+    summary = "Repeatedly selects the strongest current pair while penalizing concentrated coverage."
+    best_for = "Best for a fast, transparent plan that spreads initial coverage across selected incidents."
 
     @staticmethod
     def _matching_services(

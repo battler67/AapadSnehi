@@ -22,6 +22,8 @@ const defaultStrategy: AllocationStrategyMetadata = {
   key: "balanced-greedy-v1",
   name: "Balanced greedy distribution",
   version: "1.0.0",
+  summary: "Repeatedly selects the strongest current pair while penalizing concentrated coverage.",
+  bestFor: "Best for a fast, transparent plan that spreads initial coverage across selected incidents.",
 };
 
 export function AutomaticDistributionPanel({ data }: { data: AppData }) {
@@ -106,6 +108,7 @@ export function AutomaticDistributionPanel({ data }: { data: AppData }) {
     if (!plan) return [];
     return groupDistributionAllocations(incidentIds, incidents, plan.allocations);
   }, [incidentIds, incidents, plan]);
+  const selectedStrategy = strategies.find((item) => item.key === strategy) || defaultStrategy;
 
   return (
     <section className="glass-panel auto-distribution-card">
@@ -142,6 +145,11 @@ export function AutomaticDistributionPanel({ data }: { data: AppData }) {
         <label className="field"><span>Allocation strategy</span><select value={strategy} onChange={(event) => { invalidate(); setStrategy(event.target.value); }}>{strategies.map((item) => <option key={item.key} value={item.key}>{item.name} · v{item.version}</option>)}</select></label>
         <button className="button secondary" type="button" disabled={Boolean(busy) || data.connection !== "api"} onClick={() => void distribute(false)}>{busy === "preview" ? <LoaderCircle className="spin" size={17} /> : <Sparkles size={17} />}{busy === "preview" ? "Building plan…" : "Preview distribution"}</button>
         <button className="button primary" type="button" disabled={Boolean(busy) || !plan || plan.committed || !plan.allocations.length} onClick={() => void distribute(true)}>{busy === "commit" ? <LoaderCircle className="spin" size={17} /> : <ClipboardCheck size={17} />}{busy === "commit" ? "Assigning…" : `Confirm ${plan?.allocations.length || 0} assignments`}</button>
+      </div>
+      <div className="strategy-explainer" aria-live="polite">
+        <strong>{selectedStrategy.name}</strong>
+        <span>{selectedStrategy.summary}</span>
+        <small>{selectedStrategy.bestFor} Every result remains a proposal requiring administrator confirmation.</small>
       </div>
 
       {plan && <div className="distribution-plan">

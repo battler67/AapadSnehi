@@ -2,24 +2,27 @@ import {
   Activity,
   BellRing,
   BookOpen,
-  Camera,
   ChevronRight,
   HandHeart,
   LayoutDashboard,
   Map,
   Menu,
   Radio,
+  Waves,
   Search,
   ShieldCheck,
+  BrainCircuit,
   X,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { APP_ROUTES } from "../routes";
 
 const navItems = [
+  { href: APP_ROUTES.flood, label: "Flood rescue", icon: Waves },
   { href: APP_ROUTES.operations, label: "Operations", icon: LayoutDashboard },
   { href: APP_ROUTES.map, label: "Risk map", icon: Map },
-  { href: APP_ROUTES.users, label: "Users", icon: Camera },
+  { href: APP_ROUTES.edgeEarlyWarning, label: "Edge warning", icon: Waves },
+  { href: APP_ROUTES.mlPredictions, label: "ML predictions", icon: BrainCircuit },
   { href: APP_ROUTES.volunteers, label: "Volunteers", icon: HandHeart },
   { href: APP_ROUTES.safety, label: "Disaster Safety", icon: BookOpen },
   { href: APP_ROUTES.admin, label: "Admin", icon: ShieldCheck },
@@ -35,7 +38,7 @@ interface ShellProps {
   loading: boolean;
 }
 
-export function Shell({ children, path, navigate, connection, loading }: ShellProps) {
+export function Shell({ children, path, navigate }: ShellProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const go = (href: string) => {
@@ -67,12 +70,6 @@ export function Shell({ children, path, navigate, connection, loading }: ShellPr
           </nav>
 
           <div className="header-actions flex items-center gap-3">
-            <span className={`connection-chip ${connection}`}>
-              <span className="pulse-dot" /> {loading ? "Connecting" : connection === "api" ? "API online" : "Demo data"}
-            </span>
-
-            <span className="demo-admin-badge">Quick demo</span>
-
             <button className="icon-button desktop-only" type="button" aria-label="Notifications">
               <BellRing size={18} />
             </button>
@@ -91,6 +88,11 @@ export function Shell({ children, path, navigate, connection, loading }: ShellPr
           </nav>
         )}
       </header>
+      {import.meta.env.VITE_HOSTED_DEMO === "true" && (
+        <aside role="note" style={{ padding: "12px 20px", background: "#fff3cd", color: "#513b00", textAlign: "center" }}>
+          DEMO ONLY — Use fictional details and photos. Reports may reset after a restart. No emergency dispatch or real notifications.
+        </aside>
+      )}
       <main>{children}</main>
       <footer className="site-footer">
         <div>

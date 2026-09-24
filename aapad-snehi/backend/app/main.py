@@ -11,7 +11,7 @@ from pathlib import Path
 
 from fastapi import Depends, FastAPI, File, Form, HTTPException, Query, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, RedirectResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
@@ -69,6 +69,11 @@ from .services.image_triage import (
 from .services.image_storage import CloudinaryImageStore, ImageStorageError, StoredImage
 from .services.ingestion import run_ingestion
 from .services.sachet_scheduler import run_sachet_poll_loop
+from .edge.mqtt import mqtt_ingestion
+from .edge.routes import router as edge_router
+from .edge.simulator import simulation_manager
+from .flood.routes import router as flood_router
+from .ml.routes import router as ml_router
 
 
 caption_client = OpenAIVisionCaptionClient(
@@ -89,6 +94,7 @@ image_store = CloudinaryImageStore(
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     initialize_database()
+    mqtt_ingestion.start()
     poll_task: asyncio.Task[None] | None = None
     if settings.enable_live_adapters and settings.sachet_poll_seconds > 0:
         poll_task = asyncio.create_task(
@@ -98,6 +104,8 @@ async def lifespan(_: FastAPI):
     try:
         yield
     finally:
+        await simulation_manager.shutdown()
+        mqtt_ingestion.stop()
         if poll_task:
             poll_task.cancel()
             with suppress(asyncio.CancelledError):
@@ -117,6 +125,31 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.include_router(edge_router)
+app.include_router(flood_router)
+app.include_router(ml_router)
+
+
+@app.middleware("http")
+async def private_flood_cache_policy(request, call_next):
+    if request.url.path == "/api/v1/ml/predict":
+        raw_length = request.headers.get("content-length")
+        try:
+            content_length = int(raw_length) if raw_length else 0
+        except ValueError:
+            return JSONResponse(status_code=400, content={"detail": "Invalid Content-Length header"})
+        if content_length > settings.ml_max_payload_bytes:
+            return JSONResponse(
+                status_code=413,
+                content={"detail": f"Prediction payload exceeds the {settings.ml_max_payload_bytes}-byte limit"},
+            )
+    response = await call_next(request)
+    if request.url.path.startswith("/api/flood"):
+        response.headers["Cache-Control"] = "no-store"
+        response.headers["Vary"] = "Authorization, X-Reporter-Token"
+    if request.url.path.startswith("/api/v1/ml"):
+        response.headers["Cache-Control"] = "no-store"
+    return response
 
 
 def _utcnow() -> datetime:

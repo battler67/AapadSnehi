@@ -53,6 +53,11 @@ export function OverviewPage({ data, navigate }: { data: AppData; navigate: (pat
         <MetricCard icon={HandHeart} label="Missions active" value={data.dashboard.metrics.activeAssignments} detail="Assigned or self-claimed" tone="cyan" />
       </section>
 
+      <section className="content section-block callout-card edge-dashboard-callout">
+        <div><p className="eyebrow"><span />SIMULATED / DEMO ONLY</p><h2>Multi-hazard edge early warning</h2><p>Run deterministic virtual river, hillslope and coastal sensors, then watch transparent risk estimates mature through persistence, quality and nearby agreement.</p></div>
+        <button type="button" className="button primary" onClick={() => navigate(APP_ROUTES.edgeEarlyWarning)}>Open edge warning lab <ArrowRight size={17} /></button>
+      </section>
+
       <section className="content section-block operations-grid">
         <div>
           <div className="section-heading">
@@ -92,7 +97,7 @@ export function OverviewPage({ data, navigate }: { data: AppData; navigate: (pat
       )}
 
       <section className="content section-block callout-card">
-        <div><p className="eyebrow"><span />Community eyes on the ground</p><h2>See something the feeds have not caught?</h2><p>Capture a photo, share the location and state what people need. Clear disaster evidence is AI-screened; ambiguous evidence waits for volunteer review.</p></div>
+        <div><p className="eyebrow"><span />Community eyes on the ground</p><h2>See something the feeds have not caught?</h2><p>Share the location and what people need. Photos are optional and receive advisory AI screening when available. Incident verification always requires human review.</p></div>
         <button type="button" className="button primary" onClick={() => navigate(APP_ROUTES.users)}><Camera size={17} /> Start a report</button>
       </section>
     </div>

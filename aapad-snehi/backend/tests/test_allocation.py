@@ -14,6 +14,7 @@ from app.allocation import (
     get_strategy,
     strategy_metadata,
 )
+from app.allocation.capacity import CapacityCandidate
 
 
 
@@ -124,13 +125,95 @@ def test_allocation_skips_busy_or_duplicate_volunteers():
 
 
 def test_allocation_registry_exposes_replaceable_strategy_metadata():
-    assert strategy_metadata() == [
-        {
-            "key": "balanced-greedy-v1",
-            "name": "Balanced greedy distribution",
-            "version": "1.0.0",
-        }
+    metadata = strategy_metadata()
+    assert [item["key"] for item in metadata] == [
+        "balanced-greedy-v1",
+        "global-optimal-v1",
+        "stable-matching-v1",
     ]
+    assert all(item["summary"] and item["bestFor"] for item in metadata)
+
+
+def _two_by_two_problem() -> AllocationProblem:
+    return AllocationProblem(
+        incidents=(
+            IncidentAllocationInput(10, "A", "A", 1, 10, 0, 0, ("rescue",)),
+            IncidentAllocationInput(20, "B", "B", 1, 10, 0, 0, ("rescue",)),
+        ),
+        volunteers=(
+            VolunteerAllocationInput(101, "One", "available", 0, 0, ("rescue",), ()),
+            VolunteerAllocationInput(102, "Two", "available", 0, 0, ("rescue",), ()),
+        ),
+    )
+
+
+def test_global_optimal_strategy_maximizes_the_complete_plan(monkeypatch):
+    from app.allocation import global_optimal
+
+    scores = {(101, 10): 100.0, (101, 20): 99.0, (102, 10): 98.0, (102, 20): 1.0}
+
+    def scored(incident, volunteer, *, slot_index):
+        score = scores[(volunteer.id, incident.id)]
+        return CapacityCandidate(incident, volunteer, "rescue", score, score, {"test": score})
+
+    monkeypatch.setattr(global_optimal, "capacity_candidate", scored)
+    plan = get_strategy("global-optimal-v1").allocate(_two_by_two_problem())
+    assert {(item.volunteer_id, item.incident_id) for item in plan.decisions} == {
+        (101, 20),
+        (102, 10),
+    }
+    assert sum(item.allocation_score for item in plan.decisions) == 197.0
+
+
+def test_stable_matching_rejects_a_blocking_pair(monkeypatch):
+    from app.allocation import stable_matching
+
+    # Both volunteers propose to A first. A retains volunteer 102 because its
+    # incident-side fit is stronger, so 101 continues to B.
+    scores = {
+        (101, 10): (10.0, 100.0),
+        (101, 20): (100.0, 90.0),
+        (102, 10): (100.0, 80.0),
+        (102, 20): (10.0, 70.0),
+    }
+
+    def scored(incident, volunteer, *, slot_index):
+        fit, allocation = scores[(volunteer.id, incident.id)]
+        return CapacityCandidate(
+            incident,
+            volunteer,
+            "rescue",
+            fit,
+            allocation,
+            {"test": allocation},
+        )
+
+    monkeypatch.setattr(stable_matching, "capacity_candidate", scored)
+    plan = get_strategy("stable-matching-v1").allocate(_two_by_two_problem())
+    assert {(item.volunteer_id, item.incident_id) for item in plan.decisions} == {
+        (101, 20),
+        (102, 10),
+    }
+
+
+def test_capacity_strategies_are_deterministic_and_respect_slot_limits():
+    incident = IncidentAllocationInput(
+        10, "One-slot incident", "A", 1, 10, 0, 0, ("food",)
+    )
+    problem = AllocationProblem(
+        incidents=(incident,),
+        volunteers=(
+            VolunteerAllocationInput(101, "Near", "available", 0, 0, ("food",), ()),
+            VolunteerAllocationInput(102, "Far", "available", 10, 10, ("food",), ()),
+            VolunteerAllocationInput(103, "Busy", "unavailable", 0, 0, ("food",), ()),
+        ),
+    )
+    for key in ("global-optimal-v1", "stable-matching-v1"):
+        first = get_strategy(key).allocate(problem)
+        second = get_strategy(key).allocate(problem)
+        assert first == second
+        assert [item.volunteer_id for item in first.decisions] == [101]
+        assert {item.volunteer_id for item in first.unassigned} == {102, 103}
 
 
 def _register_volunteer(client, *, name: str, service: str, latitude: float, longitude: float):
@@ -154,7 +237,11 @@ def _register_volunteer(client, *, name: str, service: str, latitude: float, lon
     return response.json()
 
 
-def test_distribution_api_previews_then_commits_atomically(client):
+@pytest.mark.parametrize(
+    "strategy_key",
+    ["balanced-greedy-v1", "global-optimal-v1", "stable-matching-v1"],
+)
+def test_distribution_api_previews_then_commits_atomically(client, strategy_key):
     incidents = client.get("/api/tasks/open").json()
     food_incident = next(item for item in incidents if "food" in item["needs"])
     rescue_incident = next(item for item in incidents if "rescue" in item["needs"])
@@ -176,7 +263,7 @@ def test_distribution_api_previews_then_commits_atomically(client):
     request = {
         "incident_ids": [food_incident["id"], rescue_incident["id"]],
         "volunteer_ids": [food_volunteer["id"], rescue_volunteer["id"]],
-        "strategy": "balanced-greedy-v1",
+        "strategy": strategy_key,
         "note": "Automated allocation API test",
     }
 
@@ -199,7 +286,7 @@ def test_distribution_api_previews_then_commits_atomically(client):
     assert payload["committed"] is True
     assert len(payload["assignments"]) == 2
     assert all(
-        item["assignedBy"] == "Automated distribution: balanced-greedy-v1"
+        item["assignedBy"] == f"Automated distribution: {strategy_key}"
         for item in payload["assignments"]
     )
     assert len(client.get("/api/assignments").json()) == before + 2

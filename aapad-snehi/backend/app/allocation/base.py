@@ -70,6 +70,8 @@ class AllocationStrategy(Protocol):
     key: str
     name: str
     version: str
+    summary: str
+    best_for: str
 
     def allocate(self, problem: AllocationProblem) -> AllocationPlan:
         """Return a deterministic proposal without mutating application state."""

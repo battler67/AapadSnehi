@@ -109,9 +109,9 @@ The adapter sends `If-None-Match` after observing an ETag and reuses its bounded
 - SDK/service: `atproto.Client` against the default `https://bsky.social` service
 - Credential: backend-only `AAPAD_BLUESKY_EMAIL` and `AAPAD_BLUESKY_APP_PASSWORD`
 - Default query/limit: `floods in india`, at most 10 posts
-- Result policy: recognized disaster term plus an explicit help offer; requests and negations are excluded; authors are deduplicated by DID
+- Result policy: explicit offers, active aid, institutional support, and low-confidence fundraising/donation leads; request-only posts and negations are excluded; query-derived hazard context is labelled; authors are deduplicated by DID with the strongest match retained
 
-The `/bluesky-helpers` page invokes the adapter through the token-free quick-demo `POST /api/bluesky/scan` route and displays the returned public author IDs. The provider credential remains backend-only. This is deterministic keyword matching, not model inference or sentiment analysis. Results are not persisted and no Bluesky write action is implemented. See [Bluesky helper adapter](bluesky-helper-adapter.md).
+The `/bluesky-helpers` page invokes the adapter through the token-free quick-demo `POST /api/bluesky/scan` route and displays the returned public author IDs. Provider credentials remain backend-only. Assistance matching is deterministic; optional hosted Twitter-RoBERTa inference adds advisory sentiment labels but never changes matching. Results are not persisted and no Bluesky write action is implemented. See [Bluesky helper adapter](bluesky-helper-adapter.md).
 
 ## Local verification
 

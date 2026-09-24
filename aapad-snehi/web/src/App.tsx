@@ -7,9 +7,13 @@ import { MapPage } from "./pages/MapPage";
 import { OverviewPage } from "./pages/OverviewPage";
 import { PipelinePage } from "./pages/PipelinePage";
 import { SafetyPage } from "./pages/SafetyPage";
-import { UserPage } from "./pages/UserPage";
 import { VolunteerPage } from "./pages/VolunteerPage";
+import { EdgeEarlyWarningPage } from "./pages/EdgeEarlyWarningPage";
 import { APP_ROUTES, normalizeAppPath } from "./routes";
+import { FloodOperationsPage } from "./pages/FloodOperationsPage";
+import { FloodReportPage } from "./pages/FloodReportPage";
+import { MLPredictionsPage } from "./pages/MLPredictionsPage";
+import "./flood.css";
 
 function AppContent() {
   const [path, setPath] = useState(() => normalizeAppPath(window.location.pathname));
@@ -38,13 +42,16 @@ function AppContent() {
 
   const page = (() => {
     switch (path) {
+      case APP_ROUTES.flood: return <FloodOperationsPage />;
+      case APP_ROUTES.floodReport: return <FloodReportPage />;
       case APP_ROUTES.map: return <MapPage data={data} />;
-      case APP_ROUTES.users: return <UserPage />;
       case APP_ROUTES.volunteers: return <VolunteerPage data={data} />;
       case APP_ROUTES.safety: return <SafetyPage />;
       case APP_ROUTES.admin: return <AdminPage data={data} />;
       case APP_ROUTES.blueskyHelpers: return <BlueskyHelpersPage />;
       case APP_ROUTES.pipeline: return <PipelinePage data={data} />;
+      case APP_ROUTES.edgeEarlyWarning: return <EdgeEarlyWarningPage />;
+      case APP_ROUTES.mlPredictions: return <MLPredictionsPage />;
       default: return <OverviewPage data={data} navigate={navigate} />;
     }
   })();

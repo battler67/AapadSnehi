@@ -1,0 +1,109 @@
+{
+  "hazard": "tsunami",
+  "modelVersion": "tsunami-demo-v1",
+  "artifactFormat": "transparent-logistic-json-v1",
+  "featureOrder": [
+    "seaLevelAnomalyM_current",
+    "seaLevelRateMPerMin_current",
+    "bottomPressureKpa_baseline_deviation",
+    "waveHeightM_current",
+    "earthquakeMagnitude_current",
+    "tsunami_coupling"
+  ],
+  "means": [
+    0.3741866426,
+    0.05596168,
+    4.6722147675,
+    2.4803777153,
+    1.9301978262,
+    0.4523185153
+  ],
+  "scales": [
+    0.5232934316,
+    0.0831757756,
+    6.7651274229,
+    2.5796545705,
+    2.9030057936,
+    0.6736477988
+  ],
+  "coefficients": [
+    1.5428504292,
+    2.086145828,
+    1.5759029224,
+    1.495745602,
+    1.6403269016,
+    1.7587820568
+  ],
+  "intercept": -6.1174647531,
+  "demoThresholds": {
+    "watch": 0.35,
+    "warning": 0.6,
+    "critical": 0.82,
+    "exitWatch": 0.25,
+    "exitWarning": 0.5,
+    "exitCritical": 0.72,
+    "nearbyKm": 200
+  },
+  "syntheticGenerator": {
+    "normalCenter": [
+      0.02,
+      0.002,
+      0.12,
+      0.8,
+      0.0,
+      0.02
+    ],
+    "eventCenter": [
+      1.4,
+      0.22,
+      18,
+      7.5,
+      7.6,
+      1.8
+    ],
+    "scenarioGroups": 90,
+    "windowsPerGroup": 12,
+    "positiveWindowStartsAt": 6
+  },
+  "training": {
+    "seed": 20260904,
+    "splitPolicy": "scenario-group 70/15/15",
+    "trainScenarioGroups": 62,
+    "validationScenarioGroups": 14,
+    "testScenarioGroups": 14,
+    "trainWindows": 744,
+    "validationWindows": 168,
+    "testWindows": 168,
+    "syntheticOnly": true,
+    "configSha256": "611bb064ee0a185a3d3acb172d7fd471b8782b6f5a4108d5df965974aac03028"
+  },
+  "metrics": {
+    "rulesOnly": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "rocAuc": 1.0,
+      "brierScore": 0.022546
+    },
+    "classifierOnly": {
+      "precision": 0.976744,
+      "recall": 1.0,
+      "f1": 0.988235,
+      "rocAuc": 1.0,
+      "brierScore": 0.002924
+    },
+    "rulesPlusClassifier": {
+      "precision": 0.976744,
+      "recall": 1.0,
+      "f1": 0.988235,
+      "rocAuc": 1.0,
+      "brierScore": 0.008372,
+      "falseAlarmsPerSimulatedDay": 11.428571,
+      "missedEventRate": 0.0,
+      "averageDetectionLeadTimeMinutes": 0.142857
+    },
+    "chronosAnomalyFeatures": {
+      "status": "not_run"
+    }
+  }
+}

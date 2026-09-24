@@ -42,6 +42,9 @@ class Settings:
     bluesky_app_password: str
     bluesky_query: str
     bluesky_max_posts: int
+    bluesky_sentiment_enabled: bool
+    bluesky_sentiment_model: str
+    bluesky_sentiment_max_posts: int
     openai_api_key: str
     openai_vision_model: str
     openai_timeout_seconds: float
@@ -55,6 +58,12 @@ class Settings:
     hf_caption_model: str
     max_upload_bytes: int
     upload_dir: Path
+    edge_mqtt_enabled: bool
+    edge_mqtt_host: str
+    edge_mqtt_port: int
+    edge_mqtt_topic: str
+    ml_model_root: Path
+    ml_max_payload_bytes: int
 
 
 def get_settings() -> Settings:
@@ -94,6 +103,16 @@ def get_settings() -> Settings:
             or "floods in india"
         ),
         bluesky_max_posts=_bounded_int("AAPAD_BLUESKY_MAX_POSTS", 10, 1, 50),
+        bluesky_sentiment_enabled=_as_bool(
+            os.getenv("AAPAD_BLUESKY_SENTIMENT_ENABLED"), default=True
+        ),
+        bluesky_sentiment_model=os.getenv(
+            "AAPAD_BLUESKY_SENTIMENT_MODEL",
+            "cardiffnlp/twitter-roberta-base-sentiment-latest",
+        ).strip(),
+        bluesky_sentiment_max_posts=_bounded_int(
+            "AAPAD_BLUESKY_SENTIMENT_MAX_POSTS", 10, 1, 25
+        ),
         openai_api_key=os.getenv("OPENAI_API_KEY", "").strip(),
         openai_vision_model=os.getenv("OPENAI_VISION_MODEL", "gpt-4.1-mini").strip(),
         openai_timeout_seconds=max(
@@ -122,6 +141,24 @@ def get_settings() -> Settings:
         ).strip(),
         max_upload_bytes=int(os.getenv("AAPAD_MAX_UPLOAD_MB", "6")) * 1024 * 1024,
         upload_dir=BASE_DIR / "data" / "uploads",
+        edge_mqtt_enabled=_as_bool(os.getenv("AAPAD_EDGE_MQTT_ENABLED")),
+        edge_mqtt_host=os.getenv("AAPAD_EDGE_MQTT_HOST", "localhost").strip() or "localhost",
+        edge_mqtt_port=_bounded_int("AAPAD_EDGE_MQTT_PORT", 1883, 1, 65535),
+        edge_mqtt_topic=os.getenv("AAPAD_EDGE_MQTT_TOPIC", "aapadsnehi/edge/+/telemetry").strip(),
+        ml_model_root=Path(
+            os.getenv(
+                "AAPAD_ML_MODEL_ROOT",
+                str(
+                    PROJECT_DIR.parent
+                    / "AapadSnehi_models_20260915T153203617347Z"
+                    / "AapadSnehi_models_20260915T153203617347Z"
+                    / "disaster_research"
+                ),
+            )
+        ).expanduser(),
+        ml_max_payload_bytes=_bounded_int(
+            "AAPAD_ML_MAX_PAYLOAD_BYTES", 3_000_000, 250_000, 8_000_000
+        ),
     )
 
 

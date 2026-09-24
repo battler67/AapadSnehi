@@ -1,0 +1,191 @@
+.flood-workspace {
+  max-width: 1400px;
+  margin: auto;
+}
+.flood-workspace h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+.flood-workspace h2,
+.flood-workspace h3 {
+  margin: 1rem 0;
+}
+.flood-workspace p {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.flood-workspace a {
+  color: #7de9e2;
+}
+.flood-card {
+  padding: 1.3rem;
+  margin: 1rem 0;
+}
+.flood-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.flood-workspace label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+.flood-workspace input,
+.flood-workspace select,
+.flood-workspace textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.75rem;
+  color: #eaf7fc;
+  background: #111e30;
+  border: 1px solid #496077;
+  border-radius: 8px;
+  font: inherit;
+}
+.flood-workspace textarea {
+  min-height: 90px;
+}
+.flood-workspace .flood-check {
+  flex-direction: row;
+  align-items: center;
+  margin: 0.9rem 0;
+}
+.flood-check input {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.flood-actions,
+.flood-steps,
+.flood-type-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+.flood-workspace .button {
+  min-height: 44px;
+  white-space: normal;
+  margin: 0.25rem;
+}
+.flood-notice {
+  padding: 1rem;
+  border: 1px solid #d5a344;
+  border-radius: 8px;
+  background: #2c291e;
+}
+.flood-map {
+  height: 340px;
+  border-radius: 12px;
+  margin: 1rem 0;
+  z-index: 0;
+}
+.flood-pin {
+  font-size: 28px;
+}
+.flood-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.flood-photos figure {
+  margin: 0;
+  max-width: 200px;
+}
+.flood-photos img {
+  width: 180px;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.flood-photos figcaption {
+  overflow-wrap: anywhere;
+}
+.flood-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.7rem;
+}
+.flood-stats > div {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.flood-stats strong {
+  font-size: 1.4rem;
+}
+.flood-stats span {
+  text-transform: capitalize;
+  font-size: 0.8rem;
+}
+.flood-operations-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.4fr);
+  gap: 1.2rem;
+}
+.flood-list-item {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  padding: 1rem;
+  margin: 0.75rem 0;
+  gap: 0.65rem;
+  background: #122033;
+  color: #eaf7fc;
+  border: 1px solid #43566d;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.flood-list-item.selected {
+  border: 2px solid #5fe7df;
+}
+.flood-task,
+.flood-report {
+  border-top: 1px solid #43566d;
+  padding: 1rem 0;
+}
+.flood-workspace summary {
+  cursor: pointer;
+  padding: 0.8rem 0;
+}
+.flood-timeline {
+  padding-left: 1.4rem;
+}
+.flood-timeline li {
+  padding: 0.7rem 0;
+}
+.flood-timeline time,
+.flood-timeline strong,
+.flood-timeline span {
+  display: block;
+  margin: 0.4rem 0;
+}
+.flood-workspace pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 300px;
+  overflow: auto;
+}
+.flood-secret {
+  display: block;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .flood-operations-grid {
+    grid-template-columns: 1fr;
+  }
+  .flood-fields {
+    grid-template-columns: 1fr;
+  }
+  .flood-card {
+    padding: 0.9rem;
+  }
+  .flood-map {
+    height: 280px;
+  }
+}

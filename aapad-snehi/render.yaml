@@ -1,0 +1,21 @@
+# Free demonstration only: filesystem data is ephemeral.
+services:
+  - type: web
+    name: aapad-snehi
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    numInstances: 1
+    autoDeployTrigger: off
+    envVars:
+      - key: AAPAD_ENABLE_LIVE_ADAPTERS
+        value: "false"
+      - key: AAPAD_EDGE_MQTT_ENABLED
+        value: "false"
+      - key: AAPAD_SACHET_POLL_SECONDS
+        value: "0"
+      - key: AAPAD_DATABASE_URL
+        value: sqlite:////app/data/aapad_snehi.db
