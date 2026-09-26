@@ -1,0 +1,84 @@
+{
+  "created_at_utc": "2026-09-06T12:08:15.341052+00:00",
+  "source": "Third-party historical ArcGIS mirror of COOLR report-based GLC/LRC inventory, India-only query; current NASA completeness/authenticity not independently verified",
+  "source_service": "https://services9.arcgis.com/RrvMEynxDB8hycVO/arcgis/rest/services/nasa_global_landslide_catalog_point/FeatureServer/0/query",
+  "service_snapshot_note": "public ArcGIS item last data edit 2020-11-27; current NASA gis endpoint returned 404 during audit",
+  "sha256": "b2786828e1297773315b44fac2a9033b15d71dc772a5e8920540cca2ef90c26b",
+  "all_india_reports": 1693,
+  "rain_triggered_reports": 1463,
+  "date_missing_all": 2,
+  "date_missing_rain": 0,
+  "date_min": "2007-03-12 00:00:00+00:00",
+  "date_max": "2020-08-16 00:00:00+00:00",
+  "rain_reports_by_year": {
+    "2007": 71,
+    "2008": 50,
+    "2009": 52,
+    "2010": 244,
+    "2011": 152,
+    "2012": 75,
+    "2013": 187,
+    "2014": 65,
+    "2015": 183,
+    "2016": 103,
+    "2017": 169,
+    "2018": 103,
+    "2019": 6,
+    "2020": 3
+  },
+  "trigger_counts": {
+    "downpour": 721,
+    "rain": 391,
+    "continuous_rain": 273,
+    "unknown": 130,
+    "monsoon": 64,
+    "construction": 35,
+    "snowfall_snowmelt": 23,
+    "mining": 17,
+    "tropical_cyclone": 14,
+    "flooding": 9,
+    " ": 8,
+    "other": 7,
+    "leaking_pipe": 1
+  },
+  "location_accuracy_counts": {
+    "5km": 448,
+    "1km": 269,
+    "25km": 248,
+    "10km": 221,
+    "50km": 162,
+    "unknown": 77,
+    "exact": 32,
+    "100km": 3,
+    "250km": 2,
+    " ": 1
+  },
+  "event_time_missing_or_unknown_fraction": 0.7081339712918661,
+  "named_storm_fraction": 0.012987012987012988,
+  "proxy_independent_groups": 1212,
+  "exact_duplicate_rows": 19,
+  "import_source_counts": {
+    "GLC": 1450,
+    "LRC": 13
+  },
+  "quality_gate": {
+    "next_day_labels": "not yet accepted",
+    "reason": "Report dates are mostly day-resolved but reporting/media timing uncertainty, duplicate reports, sparse named-storm IDs, and a stale partial COOLR component require event-level review before treating day labels as occurrence time."
+  },
+  "weather_join_status": {
+    "status": "not_attempted_pending_label_gate; credentials absent, not a verified denial for every distribution",
+    "IMERG": "Earthdata account normally used for GES DISC granules; no regional download attempted before label gate",
+    "ERA5_Land": "Copernicus CDS account, licence acceptance, and ~/.cdsapirc required",
+    "SRTM": "NASA Earthdata Login/authorization required for official elevation tiles"
+  },
+  "geographic_unit_proposal": "0.1-degree cell-day only for records with location uncertainty <=10 km; exclude coarser/unknown locations. Region and calendar convention not yet accepted.",
+  "timing_proposal": {
+    "issue_time": "end of UTC day t",
+    "input_interval": "antecedent observations through t",
+    "forecast_horizon": "day t+1",
+    "target_interval": "UTC day t+1",
+    "availability": "retrospective unless IMERG Early/Late operational latency is replayed; ERA5-Land is delayed reanalysis"
+  },
+  "background_warning": "non-event cell-days would be sampled background, not confirmed negatives; COOLR reporting is spatially and temporally biased",
+  "training_status": "blocked by unaccepted label provenance/day accuracy and independent storm grouping; no susceptibility substitute trained. Missing hour alone does not invalidate daily labels."
+}

@@ -248,9 +248,6 @@ export function MLPredictionsPage() {
           <p className="eyebrow"><span />Model card</p>
           <h2>{selected.target}</h2>
           <dl><div><dt>Version</dt><dd>{selected.version}</dd></div><div><dt>Input</dt><dd>{selected.features.length} {selected.inputMode === "spatial_grid" ? "aligned grids" : "ordered features"}</dd></div><div><dt>Output</dt><dd>{selected.supportedOutput}</dd></div><div><dt>Operational validation</dt><dd>No</dd></div></dl>
-          <h3>Known limitations</h3>
-          <ul>{selected.limitations.map((item) => <li key={item}>{item}</li>)}</ul>
-          {catalog?.unavailableModels.map((item) => <div className="ml-unavailable" key={item.id}><strong>{item.id} model unavailable</strong><span>{item.reason}</span></div>)}
         </aside>
       </div>}
 
@@ -267,7 +264,6 @@ export function MLPredictionsPage() {
         {result.outputDetails.scoreMeaning && <p className="ml-score-meaning">{result.outputDetails.scoreMeaning}</p>}
         {result.validationWarnings.length > 0 && <div className="ml-warning-list"><strong>Validation warnings</strong>{result.validationWarnings.map((warning) => <p key={warning}>{warning}</p>)}</div>}
         <details className="ml-input-summary"><summary>Input summary used by the model</summary><pre>{JSON.stringify(result.inputDataUsed, null, 2)}</pre></details>
-        <p className="ml-result-disclaimer"><AlertTriangle size={16} /> This historical research output does not create an incident, warning, evacuation decision, or rescue assignment.</p>
       </section>}
     </>}
   </div>;

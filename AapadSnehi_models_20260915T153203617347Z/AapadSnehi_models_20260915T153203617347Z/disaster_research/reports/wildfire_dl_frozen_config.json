@@ -1,0 +1,12 @@
+{
+  "config": {
+    "base_channels": 16,
+    "batch_size": 32,
+    "epochs": 6,
+    "patience": 2,
+    "learning_rate": 0.001,
+    "positive_weight": 10.0,
+    "seed": 42
+  },
+  "rule": "seed-42 validation IoU; no seed selection"
+}

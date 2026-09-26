@@ -1,0 +1,15 @@
+{
+  "prediction_time": "2014-01-01T00:00:00+00:00",
+  "horizon": "one dataset day",
+  "operationally_validated": false,
+  "model_version": "camels-ind-xgboost-event-v2",
+  "target_end": "2014-01-02T00:00:00+00:00",
+  "probability": [
+    5.828218411220035e-05
+  ],
+  "exceeds_validation_alert_cutoff": [
+    false
+  ],
+  "data_quality_status": "complete_research_inputs",
+  "status": "prediction"
+}

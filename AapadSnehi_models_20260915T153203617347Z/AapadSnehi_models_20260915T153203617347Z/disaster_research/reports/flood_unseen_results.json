@@ -1,0 +1,39 @@
+{
+  "held_catchments": [
+    "03005",
+    "03094",
+    "04022",
+    "04054",
+    "05002",
+    "06001"
+  ],
+  "training_catchments": 24,
+  "training_rows": 157800,
+  "test_rows": 10420,
+  "config": {
+    "family": "random_forest",
+    "n_estimators": 120,
+    "max_depth": 16,
+    "min_samples_leaf": 4,
+    "max_features": 0.7
+  },
+  "regression": {
+    "n": 10420,
+    "mae": 42.22460822942046,
+    "rmse": 278.0847629936636,
+    "nse": 0.7517175713002565,
+    "kge": 0.6730210776967134,
+    "bias": -21.67764178966145
+  },
+  "persistence": {
+    "n": 10420,
+    "mae": 46.99506792131518,
+    "rmse": 302.593028939583,
+    "nse": 0.7060256521836733,
+    "kge": 0.8530621214871001,
+    "bias": 0.23077250844057143
+  },
+  "duration_seconds": 2981.4290932,
+  "protocol": "Every fifth lexicographically sorted selected ID held out from all fitting; initial fixed RF configuration, no hyperparameter search. Unknown one-hot identity ignored; static maps and historical local discharge allowed.",
+  "limitations": "Local historical discharge is required, so not ungauged-basin forecasting. No held-out threshold estimated and no event classification reported. Basins may be nested and geographically correlated. This is a separate single-model extension, not an ML-versus-DL claim."
+}

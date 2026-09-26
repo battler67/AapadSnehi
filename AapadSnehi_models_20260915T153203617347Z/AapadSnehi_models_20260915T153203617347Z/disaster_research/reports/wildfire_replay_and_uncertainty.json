@@ -1,0 +1,28 @@
+{
+  "selection_rule": "median and lowest test IoU among positive-target scenes, tie by scene order",
+  "selected_scene_indices": [
+    280,
+    0
+  ],
+  "timestamp_limitation": "TFRecord order only; occurrence date/independent event identity unavailable",
+  "uncertainty": {
+    "classical": {
+      "macro_scene_iou": 0.13017489153562462,
+      "descriptive_scene_bootstrap_95": [
+        0.12273305540758304,
+        0.13793354836715224
+      ],
+      "positive_target_scene_macro_iou": 0.13154340418332128,
+      "limitation": "Scene bootstrap, not independent-fire uncertainty; spatial/event overlap may make intervals too narrow"
+    },
+    "unet": {
+      "macro_scene_iou": 0.1825084433446019,
+      "descriptive_scene_bootstrap_95": [
+        0.16929719750155092,
+        0.19504221899278784
+      ],
+      "positive_target_scene_macro_iou": 0.11290635099014348,
+      "limitation": "Scene bootstrap, not independent-fire uncertainty; spatial/event overlap may make intervals too narrow"
+    }
+  }
+}

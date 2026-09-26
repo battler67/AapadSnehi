@@ -1,0 +1,16 @@
+{
+  "version": "2",
+  "seed": 42,
+  "repeat_seeds": [42, 43, 44],
+  "flood_target_dates": {"train": ["1991-01-01", "2008-12-31"], "validation": ["2009-01-01", "2013-12-31"], "test": ["2014-01-01", "2018-12-31"]},
+  "high_flow_training_percentile": 95,
+  "catchment_count": 30,
+  "flood_dl": {"architectures": ["lstm", "tcn"], "sequence_lengths_lstm": [30, 60, 90], "sequence_lengths_tcn": [60], "hidden_units": 64, "epochs": 10, "patience": 3, "batch_size": 1024},
+  "wildfire_dl": {"architecture": "unet", "base_channels": 16, "epochs": 6, "patience": 2, "batch_size": 32, "loss": "weighted BCE + 0.3 Dice", "initial_positive_weight": 10},
+  "selection": {"flood_regression": "validation RMSE", "event_classifier": "validation F2", "unet_checkpoint": "validation IoU at validation-selected F2 cutoff"},
+  "flood_regression_shortlist": {"families": ["random_forest", "extra_trees", "xgboost"], "configurations_per_family": 2, "reason": "top two ensemble screens plus contrasting boosted-tree family; simple decision tree remains a reported screen"},
+  "wildfire_classical_shortlist": {"families": ["extra_trees", "random_forest", "xgboost"], "configurations_per_family": 2, "reason": "top three validation F2 screens"},
+  "resource_limits": {"concurrent_training_models": 1, "cpu_threads": 8, "data_loader_workers": 0, "classical_run_seconds": 900, "flood_dl_run_seconds": 1200, "wildfire_dl_run_seconds": 3600},
+  "test_integrity": "Original flood test inspected before protocol correction; corrected rerun is disclosed. Wildfire test scoring occurs after validation freeze. No score-driven target-population changes.",
+  "configuration_authority": "This file documents protocol. Exact executable estimator settings are in model_registry.py and saved per-run DL configs; execute.py supplies process limits."
+}

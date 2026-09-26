@@ -1,0 +1,135 @@
+{
+  "frozen_config": {
+    "architecture": "lstm",
+    "sequence_length": 90,
+    "hidden": 128,
+    "batch_size": 1024,
+    "epochs": 10,
+    "patience": 3,
+    "learning_rate": 0.001,
+    "seed": 42
+  },
+  "seed_results": [
+    {
+      "seed": 42,
+      "selected_by": "lowest validation RMSE among LSTM/TCN and sequence lengths",
+      "screen_run": "flood-screen-dl-lstm-l90-s42-h128",
+      "test": {
+        "regression": {
+          "n": 46349,
+          "mae": 46.10616424770767,
+          "rmse": 609.6085135436977,
+          "nse": -0.5132183960815184,
+          "kge": 0.2900199344290346,
+          "bias": 8.430534663643718
+        },
+        "classification": {
+          "n": 46349,
+          "prevalence": 0.027530259552525405,
+          "threshold": 0.8355128020048141,
+          "accuracy": 0.9646594317029493,
+          "precision": 0.42979053529868116,
+          "recall": 0.8683385579937304,
+          "f1": 0.5749870264660093,
+          "f2": 0.7211663629263213,
+          "average_precision_sklearn": 0.692807630915309,
+          "roc_auc": 0.978973086293242,
+          "brier": 0.07039917045922262,
+          "confusion_matrix_tn_fp_fn_tp": [
+            43603,
+            1470,
+            168,
+            1108
+          ],
+          "false_positive_fraction_of_negative_samples": 0.032613759900605686,
+          "false_negative_samples": 168,
+          "false_positive_samples": 1470
+        }
+      },
+      "test_sequences": 46349,
+      "model_size_bytes": 375715,
+      "checkpoint_reload_equal": true
+    },
+    {
+      "seed": 43,
+      "selected_by": "lowest validation RMSE among LSTM/TCN and sequence lengths",
+      "screen_run": "flood-screen-dl-lstm-l90-s43-h128",
+      "test": {
+        "regression": {
+          "n": 46349,
+          "mae": 43.62530788785528,
+          "rmse": 354.4919504897771,
+          "nse": 0.4883036474176671,
+          "kge": 0.7100776063804035,
+          "bias": -14.15593877304234
+        },
+        "classification": {
+          "n": 46349,
+          "prevalence": 0.027530259552525405,
+          "threshold": 0.651978425681591,
+          "accuracy": 0.9547994562989492,
+          "precision": 0.3627220918538384,
+          "recall": 0.8479623824451411,
+          "f1": 0.5081004930734915,
+          "f2": 0.6689748979844196,
+          "average_precision_sklearn": 0.6413625753667411,
+          "roc_auc": 0.9761545307865951,
+          "brier": 0.046947805351190294,
+          "confusion_matrix_tn_fp_fn_tp": [
+            43172,
+            1901,
+            194,
+            1082
+          ],
+          "false_positive_fraction_of_negative_samples": 0.042176025558538374,
+          "false_negative_samples": 194,
+          "false_positive_samples": 1901
+        }
+      },
+      "test_sequences": 46349,
+      "model_size_bytes": 375715,
+      "checkpoint_reload_equal": true
+    },
+    {
+      "seed": 44,
+      "selected_by": "lowest validation RMSE among LSTM/TCN and sequence lengths",
+      "screen_run": "flood-screen-dl-lstm-l90-s44-h128",
+      "test": {
+        "regression": {
+          "n": 46349,
+          "mae": 41.42210107850387,
+          "rmse": 329.35705482104646,
+          "nse": 0.558293788938657,
+          "kge": 0.7681118288439641,
+          "bias": -2.3085085631285387
+        },
+        "classification": {
+          "n": 46349,
+          "prevalence": 0.027530259552525405,
+          "threshold": 0.7154433503746986,
+          "accuracy": 0.950656972102958,
+          "precision": 0.33947284852334075,
+          "recall": 0.8377742946708464,
+          "f1": 0.4831638418079096,
+          "f2": 0.6476432812310675,
+          "average_precision_sklearn": 0.6081658424784018,
+          "roc_auc": 0.971799874352209,
+          "brier": 0.06127287161248214,
+          "confusion_matrix_tn_fp_fn_tp": [
+            42993,
+            2080,
+            207,
+            1069
+          ],
+          "false_positive_fraction_of_negative_samples": 0.0461473609477958,
+          "false_negative_samples": 207,
+          "false_positive_samples": 2080
+        }
+      },
+      "test_sequences": 46349,
+      "model_size_bytes": 375715,
+      "checkpoint_reload_equal": true
+    }
+  ],
+  "caveat": "Repeat variation is model randomness, not independent basin uncertainty"
+}

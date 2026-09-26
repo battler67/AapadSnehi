@@ -1,0 +1,550 @@
+{
+  "created_utc": "2026-09-15T15:32:03.617627+00:00",
+  "contents": "Three selected models, source/preprocessing, real-input examples and research reports; no training data or credentials",
+  "files": [
+    {
+      "path": "disaster_research/__init__.py",
+      "bytes": 95,
+      "sha256": "2c92da43840c5d99ae6973a18a80371505e4eea59d135d286d55d203b0ea4f68"
+    },
+    {
+      "path": "disaster_research/__main__.py",
+      "bytes": 5277,
+      "sha256": "fde8432d70540e98fcd2938634f3cfa287a96e39f796ffa034f3360be5ef419d"
+    },
+    {
+      "path": "disaster_research/acquire.py",
+      "bytes": 6342,
+      "sha256": "950bca1e356b3215d45ceeeb18546ba615db83c41fb971110ee3a9687efad2e0"
+    },
+    {
+      "path": "disaster_research/artifacts/flood/selected_event.joblib",
+      "bytes": 777938,
+      "sha256": "041c08e0472d57d91b67c67c68f5778f541613fe2a77b7a224a379c44dcaf714"
+    },
+    {
+      "path": "disaster_research/artifacts/flood/selected_regression.joblib",
+      "bytes": 94244417,
+      "sha256": "c4251a733ed3d7254a9c0dcd89d796b9ce9900c72bfe8e9b01c8bfab0d085fe9"
+    },
+    {
+      "path": "disaster_research/artifacts/handoff/example_provenance.json",
+      "bytes": 986,
+      "sha256": "23f73adc7d4f6abff295a535ee8de16ce70bbb76117a7da7ceb93a3a73adf97c"
+    },
+    {
+      "path": "disaster_research/artifacts/handoff/random_forest_input.json",
+      "bytes": 2651,
+      "sha256": "bb71ee29ae519f1da535edd480cf67d878891dd6a8ceae6c80c0272c9440307c"
+    },
+    {
+      "path": "disaster_research/artifacts/handoff/random_forest_output.json",
+      "bytes": 358,
+      "sha256": "46ef1711158ffa2683d69f864b0c38533135f3c3a4db3d28962dab8c4526029d"
+    },
+    {
+      "path": "disaster_research/artifacts/handoff/unet_input.json",
+      "bytes": 1206881,
+      "sha256": "aba0339c301e73d00c4a77d71c6cd5b8dee9213bc088b0aec30ad7de81d43655"
+    },
+    {
+      "path": "disaster_research/artifacts/handoff/unet_output.json",
+      "bytes": 120441,
+      "sha256": "8a440052ae69e992447ee9af79c8f150005bb26290111503f4ed8eb6055ef606"
+    },
+    {
+      "path": "disaster_research/artifacts/handoff/xgboost_input.json",
+      "bytes": 2651,
+      "sha256": "bb71ee29ae519f1da535edd480cf67d878891dd6a8ceae6c80c0272c9440307c"
+    },
+    {
+      "path": "disaster_research/artifacts/handoff/xgboost_output.json",
+      "bytes": 412,
+      "sha256": "c149a1285fc5dc57faea93f9e707ba625eaf5f8e9332a2db23cf1d2de65a803f"
+    },
+    {
+      "path": "disaster_research/complete_registry.py",
+      "bytes": 4125,
+      "sha256": "2187249881983fc315f391ddf88f868eee1c387af1e394c34f6e44037538dcef"
+    },
+    {
+      "path": "disaster_research/configs/protocol_v2.json",
+      "bytes": 1811,
+      "sha256": "e1d1dc1aea392b233a20cb901870251aedaf7649e2da842d346facd46e392f18"
+    },
+    {
+      "path": "disaster_research/documentation_audit.py",
+      "bytes": 2944,
+      "sha256": "1909fe310f05cd8beaa6dde9816b0bdb1e76936257b3aefb1620a3dfbc8c5e16"
+    },
+    {
+      "path": "disaster_research/environment.py",
+      "bytes": 884,
+      "sha256": "e93b125ef9dcca79f811aaea3345c1b99e88107df3be508b057ad508af85b694"
+    },
+    {
+      "path": "disaster_research/execute.py",
+      "bytes": 2861,
+      "sha256": "937343033a76d632027025bb97e852a36f02ed39aa2ea32a70d9cd4fceb0fe98"
+    },
+    {
+      "path": "disaster_research/export_handoff.py",
+      "bytes": 4797,
+      "sha256": "25b773716820e0ea41c74874a7c7014bc945bb9e9324c8b0dfb549a3d30c906c"
+    },
+    {
+      "path": "disaster_research/expressitvity.md",
+      "bytes": 7658,
+      "sha256": "4a2d6759922d3f73482f3247d35a5e72f5fcb4123900a33e1a8182f08c556bb0"
+    },
+    {
+      "path": "disaster_research/FINAL_REPORT.md",
+      "bytes": 18264,
+      "sha256": "952d24f3b8b02f9bb5d445675bd1371386a1853852386d1a46568a9879fb4bf3"
+    },
+    {
+      "path": "disaster_research/finish.py",
+      "bytes": 3385,
+      "sha256": "a0404e9061fbf5f2d16d64523815cd98bb32048c51b08839de66a07e7932248b"
+    },
+    {
+      "path": "disaster_research/flood_analysis.py",
+      "bytes": 8384,
+      "sha256": "3764317124d9a51f84ff36ebe16355288a9e0d49925dd31ed8517b8bb2f9466b"
+    },
+    {
+      "path": "disaster_research/flood_classical.py",
+      "bytes": 9147,
+      "sha256": "d56c2e9494ecb8256edd2aa2dc282dea1f2eb6f351768a245aeda2b03352c163"
+    },
+    {
+      "path": "disaster_research/flood_data.py",
+      "bytes": 9163,
+      "sha256": "65a03224d55959c4a45a296dc3e1d3f7db7f12b16e9b66c6d483f1caa7eedb32"
+    },
+    {
+      "path": "disaster_research/flood_dl.py",
+      "bytes": 12355,
+      "sha256": "4a4f48b4ec26bd30de5e0e072d430e1a915ab2c3ab015da0eaf421d1d6fcf9cc"
+    },
+    {
+      "path": "disaster_research/flood_finalize.py",
+      "bytes": 10472,
+      "sha256": "82c56238d826105bb317cf752be62b49a1109d88ab5a714c3302eafdf8c99c7a"
+    },
+    {
+      "path": "disaster_research/hardware.py",
+      "bytes": 3351,
+      "sha256": "8da686eab77ab5499229eb56fc16e86eca654dfa73f1664caf8b6832f9e5c897"
+    },
+    {
+      "path": "disaster_research/inference.py",
+      "bytes": 8974,
+      "sha256": "6bae6473dc1709d7ec058160285e90c470b6b64a9581d915ca7f2dbb82c4431b"
+    },
+    {
+      "path": "disaster_research/landslide_data.py",
+      "bytes": 5789,
+      "sha256": "b0671bbe9180d7dbaac76d83a8c0bb463dd06cd9061f42c0b2e3af92f3ddf5b2"
+    },
+    {
+      "path": "disaster_research/leaderboards.py",
+      "bytes": 2841,
+      "sha256": "9dfbaa50c91e744c2240584c5e74aa6db893540b0c38523205254f1c150872c8"
+    },
+    {
+      "path": "disaster_research/metrics.py",
+      "bytes": 4107,
+      "sha256": "78a45cd3cb3c80c96b34322f851c895e59b1c8c5b54cc28892bb53ec11cff9ae"
+    },
+    {
+      "path": "disaster_research/model_registry.py",
+      "bytes": 6966,
+      "sha256": "ee777f55188e5c8d455d693fc4df045f30d5869bf032f846c461fc19996809ed"
+    },
+    {
+      "path": "disaster_research/MODEL_USER_GUIDE.md",
+      "bytes": 10573,
+      "sha256": "826184d7e862b61a9e3dc2a89d59ae7791f07ec506854bc18cdc93c641cdc51f"
+    },
+    {
+      "path": "disaster_research/monitor.py",
+      "bytes": 1627,
+      "sha256": "fcff6864fba2db93753f8e25bfb2fabfea4f60ca983f0cc8cc5141a90b134b5b"
+    },
+    {
+      "path": "disaster_research/OWNER_INTEGRATION_HANDOFF.md",
+      "bytes": 10679,
+      "sha256": "131603e0746470f0f25d657f0258b31aad5c7920d5d5fb706f38845732eefc13"
+    },
+    {
+      "path": "disaster_research/package_models.py",
+      "bytes": 7072,
+      "sha256": "6a23aa9d9f9ba833e724bdeb903e977289712aa3f295e19f62a42ad6ffd01426"
+    },
+    {
+      "path": "disaster_research/paths.py",
+      "bytes": 423,
+      "sha256": "fa8f43aa5962293d075f614479313b096fb29c076374982e33914a184f3a6763"
+    },
+    {
+      "path": "disaster_research/README.md",
+      "bytes": 3761,
+      "sha256": "038a89cc81ff0876de02eb38675c6e49edad5c52ce9e583328b1dec41cb7c7ab"
+    },
+    {
+      "path": "disaster_research/repeat_flood.py",
+      "bytes": 1166,
+      "sha256": "d47cbc93015de3b94a1d8ab714b3ca46e4322914952334b3296ebdf2d6da90be"
+    },
+    {
+      "path": "disaster_research/repeat_wildfire.py",
+      "bytes": 1274,
+      "sha256": "30969f12eaf14d062d1a7ea62f038f971da4a2d9960459e8d219189be0f0e743"
+    },
+    {
+      "path": "disaster_research/replay.py",
+      "bytes": 6740,
+      "sha256": "07b323e5e3ee1bde93987283929b3dcafa75dea90ea5530c9bc617895cc2a2e9"
+    },
+    {
+      "path": "disaster_research/report.py",
+      "bytes": 26065,
+      "sha256": "0a8891103b55638173c36983a9eed28911eaa51dd03fd5fcc61f7eef143084b0"
+    },
+    {
+      "path": "disaster_research/reports/acquisition_manifest.json",
+      "bytes": 2609,
+      "sha256": "dceab27c5d826566432b6e17b7cfc2251e0a7fea5472d706affa78b3de01a973"
+    },
+    {
+      "path": "disaster_research/reports/dl_adapter_verification.json",
+      "bytes": 1509,
+      "sha256": "07db2a2d20d217e0ac397aea1539608a7f9186a7d1e9f5eb31d55156111a9303"
+    },
+    {
+      "path": "disaster_research/reports/environment_versions.json",
+      "bytes": 4862,
+      "sha256": "ca0fee16fd296a640e9dd9ebfef53da234820bb90c92a820ee86c81f09b96ab0"
+    },
+    {
+      "path": "disaster_research/reports/execution_failure_history.json",
+      "bytes": 896,
+      "sha256": "cd75f8a22e2ba4cdf30f50cbbacb348896227f449a10405230f1814f8e72366a"
+    },
+    {
+      "path": "disaster_research/reports/execution_v2.json",
+      "bytes": 18244,
+      "sha256": "8de4cd4ae4a68866d3c4bcf662ec9cdf01556df0fb79f021cddd7c633db49ee7"
+    },
+    {
+      "path": "disaster_research/reports/feature_units_and_availability.json",
+      "bytes": 3724,
+      "sha256": "4bed674fef2b31be89422762f5c97f94e25f95f06e07be866c8406a97914117a"
+    },
+    {
+      "path": "disaster_research/reports/finishing_execution.json",
+      "bytes": 5330,
+      "sha256": "3cb0f76015c12805c02d05e578c3e4bb452439910fb03de1d9e255bf6eb97e0e"
+    },
+    {
+      "path": "disaster_research/reports/flood_catchment_audit.csv",
+      "bytes": 23554,
+      "sha256": "baf425fdb265926f4517bac32a27f06fde1cc3fed863c19e140ec3d21327cf23"
+    },
+    {
+      "path": "disaster_research/reports/flood_classification_screening_leaderboard.csv",
+      "bytes": 6992,
+      "sha256": "d4ff2dd2c263dbe7b34a5d0d1ca57b4ac2f1cf5858f3559460051c724bc5b55f"
+    },
+    {
+      "path": "disaster_research/reports/flood_dataset_audit.json",
+      "bytes": 3309,
+      "sha256": "6865972054f900aca89eeff860e5ee242ff7a260b7b0c45469297db2133f91cf"
+    },
+    {
+      "path": "disaster_research/reports/flood_dl_final_results.json",
+      "bytes": 1191,
+      "sha256": "5f4fc91e5d5a56eb517848efbd96238d7f2db5806a3520aa0935ed1b753b9136"
+    },
+    {
+      "path": "disaster_research/reports/flood_dl_frozen_config.json",
+      "bytes": 275,
+      "sha256": "21167a3176e443cce4303e329218f8628adcddee67f64ab03e6d06d59e99d15b"
+    },
+    {
+      "path": "disaster_research/reports/flood_dl_seed_results.json",
+      "bytes": 4393,
+      "sha256": "958c3e6eb6c2df81f16da1a08a90845ccdbceed674748abe8286dbd404d08ba0"
+    },
+    {
+      "path": "disaster_research/reports/flood_event_curves.png",
+      "bytes": 56113,
+      "sha256": "762fc3fed51aeea07db439d567876dcd067dbed275a03612514c5245044d940e"
+    },
+    {
+      "path": "disaster_research/reports/flood_feature_manifest.json",
+      "bytes": 2528,
+      "sha256": "9abc2ed0b236b52aab7b67e76973c16b093ef49d44afba0c7b39eae549041474"
+    },
+    {
+      "path": "disaster_research/reports/flood_final_high_flow_leaderboard.csv",
+      "bytes": 1673,
+      "sha256": "6b1a66c4c5102cc5361e1907c7e4e061e1fdb59146cb89dfb8a63c9d3df267be"
+    },
+    {
+      "path": "disaster_research/reports/flood_final_per_catchment.csv",
+      "bytes": 3328,
+      "sha256": "46d125e8fe5cf5663658c83f0a4ffe119ba585c3484c692e9cb70e4814aa5582"
+    },
+    {
+      "path": "disaster_research/reports/flood_final_regression_leaderboard.csv",
+      "bytes": 494,
+      "sha256": "502cc2e4d88c9b9f95971e2b3ecb35a75067a6156cd1381529262cb957b7ac5c"
+    },
+    {
+      "path": "disaster_research/reports/flood_final_results.json",
+      "bytes": 6082,
+      "sha256": "4005c14b234723d66241f1139febbd3fa32f9100060ba02c426fce63eb2bae0c"
+    },
+    {
+      "path": "disaster_research/reports/flood_finalist_tuning.json",
+      "bytes": 5497,
+      "sha256": "ee0d50756d8d4f31272f15c2f38fadda87be2663528254ae8263a8280b54a28a"
+    },
+    {
+      "path": "disaster_research/reports/flood_hydrographs.png",
+      "bytes": 133098,
+      "sha256": "d844ce2673a0c7893e08fb6d814d14f8011c585a96ac8b83df6ebbbdf1073b52"
+    },
+    {
+      "path": "disaster_research/reports/flood_matched_analysis.json",
+      "bytes": 6425,
+      "sha256": "bd60a398e58576655e62856dc88932da0c73179f6b5bcebfbb8fa75d109f0577"
+    },
+    {
+      "path": "disaster_research/reports/flood_matched_hydrographs.png",
+      "bytes": 160190,
+      "sha256": "a8ddccc0284eb4c38f49998e05e75060ed615ee93af608fc7ddb10bb26d1b0da"
+    },
+    {
+      "path": "disaster_research/reports/flood_matched_per_catchment.csv",
+      "bytes": 10278,
+      "sha256": "213e126d2bdd44e666bffb54df01690cf82f6f4e1440edefd5fb0429d48ceecb"
+    },
+    {
+      "path": "disaster_research/reports/flood_peak_errors.csv",
+      "bytes": 2512,
+      "sha256": "56c38eac334a5c9b65283aacbcd9502f671cede9f94a76263babbb781a55d237"
+    },
+    {
+      "path": "disaster_research/reports/flood_regression_screening_leaderboard.csv",
+      "bytes": 3263,
+      "sha256": "ff5f6f86fcb5b08c3c4df4a4927e78d47a08fe16804b47a0fd8e466ef0872075"
+    },
+    {
+      "path": "disaster_research/reports/flood_unseen_per_catchment.csv",
+      "bytes": 675,
+      "sha256": "85ac81ca190d167cd25d6832518d21c294d0c6892f0369e40935b91d30b778a8"
+    },
+    {
+      "path": "disaster_research/reports/flood_unseen_results.json",
+      "bytes": 1317,
+      "sha256": "22b3ef6be64db9d8f3bc348703884cf8c6bdbba5e3266f04c017051037f4ee0f"
+    },
+    {
+      "path": "disaster_research/reports/hardware.json",
+      "bytes": 883,
+      "sha256": "7d68a1856863220bfebb3a9b035894bc08f6085d8a31ce3e85e5a8a4a996749b"
+    },
+    {
+      "path": "disaster_research/reports/landslide_dataset_audit.json",
+      "bytes": 3497,
+      "sha256": "4686820a234a030b5f19c90186d0c0f4db217cd9a9cf9b5e8336f59375616738"
+    },
+    {
+      "path": "disaster_research/reports/landslide_india_rain_event_audit.csv",
+      "bytes": 951830,
+      "sha256": "96924432f179305dce3dbcd880114ef267c4bfec22fd36ee5c363dab35cc7bdc"
+    },
+    {
+      "path": "disaster_research/reports/model_handoff_manifest.json",
+      "bytes": 6700,
+      "sha256": "654556e423c1be76eb1cd160ca4c00a978fb5d5548fd0dde9887035290f5bd0f"
+    },
+    {
+      "path": "disaster_research/reports/model_verification.json",
+      "bytes": 1845,
+      "sha256": "48ebf18f388aa6ab371cde936cf840aa49d24fbb90e10653d4650fff8a204274"
+    },
+    {
+      "path": "disaster_research/reports/real_data_smoke.json",
+      "bytes": 2006,
+      "sha256": "ca00cade4ed4566ea4383301b13cf04c9713513273d609ef10aebba6d30c3041"
+    },
+    {
+      "path": "disaster_research/reports/run_registry.csv",
+      "bytes": 29003,
+      "sha256": "588b565b17dfeb37e98820b86143b4d20fc254dbac9d1491bb2dfde368a302af"
+    },
+    {
+      "path": "disaster_research/reports/sampled_memory_peaks.json",
+      "bytes": 1007,
+      "sha256": "75b0af6363b72964c20809f3971a9c243c2a504f0780c6a2737aa59a4c0b72d2"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_classical_curves.png",
+      "bytes": 51346,
+      "sha256": "89579ae72a7c2e5f77b5433bc80c3fe7de9f7bcd030f1f126591ef519215490b"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_classical_final_results.json",
+      "bytes": 5871,
+      "sha256": "7890b14729a03a8915f5c3a6f554c84f976fde8bb6c0e0941d7e0b66a1be5978"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_classical_sample_manifest.json",
+      "bytes": 709,
+      "sha256": "30124b3945e60236217b091c6534f5a44d59699cba354563dcdcfb54a83a46d0"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_classical_screening_leaderboard.csv",
+      "bytes": 17807,
+      "sha256": "2cc0da227a5d58328cb2ffdc651169ccee8ca84c33b85e3d129d28c499238465"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_classical_test_per_scene.csv",
+      "bytes": 96285,
+      "sha256": "c8710d544faf8150707bc1fadd3bcfc73c0e584c8a4e1896230230485a89c400"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_dataset_audit.json",
+      "bytes": 6116,
+      "sha256": "7cc18a9613330c90da2e805f921e49fd4c69d73fbbbe67babd1554b6c361076a"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_dl_frozen_config.json",
+      "bytes": 242,
+      "sha256": "3bb8b6084a8e7b9629752d47cc513ad60cd08c04bad865cd393fba979976edf6"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_dl_seed_results.json",
+      "bytes": 6096,
+      "sha256": "fa569314080a397bc0f081678d08f52948846a9b7e3ebd8332c55e905dd1059a"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_final_leaderboard.csv",
+      "bytes": 1733,
+      "sha256": "d72ed3aa6cb7389682a8f06b76ea4bf7841499ce14de19cdb57349bc5268241c"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_finalist_tuning.json",
+      "bytes": 11207,
+      "sha256": "257019c18928bb664c90be5b653c401d03f585b000702136f59ae7bd37792835"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_persistence_eval_per_scene.csv",
+      "bytes": 90068,
+      "sha256": "e9395ac4d0df41c1c797402f3bbbbb132bd8d4acb499c752a9f5f2801b94e63e"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_persistence_test_per_scene.csv",
+      "bytes": 85423,
+      "sha256": "c487e1cfc8694314ea844793238dabbc9cd2159fdeac2b13b5f1a55331d5cebc"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_replay_and_uncertainty.json",
+      "bytes": 1034,
+      "sha256": "c54e1e7332340a16f5682dcc4f9767ca98e79d31bfa0eaa8acc852bf57e5b906"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_replay_examples.png",
+      "bytes": 37794,
+      "sha256": "e62e5ebc07fa7f8b1eb3c7ed3a4d9fb44b1d9a7500298bcc588aec1777e4e6ea"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_unet_final_results.json",
+      "bytes": 1709,
+      "sha256": "453d1e42acf3d4d31e8131e7862b8ddec4a4d22728406c35f3ecfe5fc7462366"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_unet_replay.png",
+      "bytes": 37149,
+      "sha256": "79ad6d0f325da04ce328d095dc35ddc134d45c5379c3ab45f5b0748ddacf493d"
+    },
+    {
+      "path": "disaster_research/reports/wildfire_unet_test_per_scene.csv",
+      "bytes": 84821,
+      "sha256": "1070424a75a323c7af9da52475294856d8950fd52b7eb4cfc5f22cd7e19edbe5"
+    },
+    {
+      "path": "disaster_research/requirements.txt",
+      "bytes": 263,
+      "sha256": "84eda9da3d205461addb523f1898d397786f394e34ee062d60a404e87f8d1b79"
+    },
+    {
+      "path": "disaster_research/revision.py",
+      "bytes": 1373,
+      "sha256": "cf23c85b7f5a3f066555b1b9f19363ad56605ec03053b3cf2fbe3788a32d3cc5"
+    },
+    {
+      "path": "disaster_research/run_registry.py",
+      "bytes": 1492,
+      "sha256": "4996f95d0cdec94aae8483e75f70d7cb5015671205d8a8585df21375b8d25769"
+    },
+    {
+      "path": "disaster_research/runs/wildfire/screening/dl/wildfire-screen-unet-b16-s42/best.pt",
+      "bytes": 499337,
+      "sha256": "dcb6ad6e5ed7e7d0552fc0ea147fadf0810d845503421e4269de684b82a41639"
+    },
+    {
+      "path": "disaster_research/smoke.py",
+      "bytes": 2430,
+      "sha256": "a13468c5796a2b8e838f8828258294684aa4100fd72a83ae4cb7fa2d03bb005b"
+    },
+    {
+      "path": "disaster_research/UNDERSTAND_THE_PIPELINE.md",
+      "bytes": 6261,
+      "sha256": "3532ff5e523d2e0b4c42bfdb7c5258d0978f571821ff0a31f6de6d591e102f9f"
+    },
+    {
+      "path": "disaster_research/unseen_flood.py",
+      "bytes": 2158,
+      "sha256": "35e69535b0a52d9b7969c9a78312e40284566f04669452a9469d73dbccfa4337"
+    },
+    {
+      "path": "disaster_research/verify_dl_adapters.py",
+      "bytes": 4881,
+      "sha256": "5014273f1d3e7abc5f6efcab950a9a9107ef09c71cc8cf4a688106f692470558"
+    },
+    {
+      "path": "disaster_research/verify_models.py",
+      "bytes": 1832,
+      "sha256": "2ec692195224a25f0fa7b4960c717eef0743495d34477a72dc735dc16a3b7552"
+    },
+    {
+      "path": "disaster_research/wildfire_classical.py",
+      "bytes": 9559,
+      "sha256": "169b99b21e7486e73e6c62db38b8cd60acd269bd09c24628cc0643b3bec92f3a"
+    },
+    {
+      "path": "disaster_research/wildfire_data.py",
+      "bytes": 5832,
+      "sha256": "59d9084307021d0df9be4f9a49f47214964cf51fd875d88966c724163cfcd4f2"
+    },
+    {
+      "path": "disaster_research/wildfire_dl.py",
+      "bytes": 9309,
+      "sha256": "e7cda5759618e9d60a9d99fb42438ed3241dc48917a4b610d20bf5f3e02a4227"
+    },
+    {
+      "path": "disaster_research/wildfire_finalize.py",
+      "bytes": 7008,
+      "sha256": "2f047cc7aa2deb69077f9955fae2f8780494b62c55c6ca8fbb6e373e99f5eacb"
+    }
+  ],
+  "verification": {
+    "copied_package_reload_predictions_equal": true,
+    "scope": "Existing laptop research environment, CPU; not a clean dependency installation test"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "random_forest": {
+    "rule": "First date/catchment-sorted held-out row with complete required features",
+    "catchment_id": "03005",
+    "input_day": "2013-12-31",
+    "timestamp_caveat": "Assumed retrospective day-end availability, not verified publication timestamps",
+    "matches_saved_heldout_prediction": true
+  },
+  "xgboost": {
+    "rule": "First date/catchment-sorted held-out row with complete required features",
+    "catchment_id": "03005",
+    "input_day": "2013-12-31",
+    "timestamp_caveat": "Assumed retrospective day-end availability, not verified publication timestamps",
+    "matches_saved_heldout_prediction": true
+  },
+  "unet": {
+    "rule": "First published test scene (index 0); deliberately not selected for good performance",
+    "timestamp_caveat": "Illustrative adapter-test dates only; TFRecords do not supply historical scene dates",
+    "observed_target_not_in_request": true,
+    "matches_saved_replay_prediction": true
+  }
+}

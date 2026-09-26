@@ -1,0 +1,40 @@
+{
+  "seed": 42,
+  "selected_by": "lowest validation RMSE among LSTM/TCN and sequence lengths",
+  "screen_run": "flood-screen-dl-lstm-l90-s42-h128",
+  "test": {
+    "regression": {
+      "n": 46349,
+      "mae": 46.10616424770767,
+      "rmse": 609.6085135436977,
+      "nse": -0.5132183960815184,
+      "kge": 0.2900199344290346,
+      "bias": 8.430534663643718
+    },
+    "classification": {
+      "n": 46349,
+      "prevalence": 0.027530259552525405,
+      "threshold": 0.8355128020048141,
+      "accuracy": 0.9646594317029493,
+      "precision": 0.42979053529868116,
+      "recall": 0.8683385579937304,
+      "f1": 0.5749870264660093,
+      "f2": 0.7211663629263213,
+      "average_precision_sklearn": 0.692807630915309,
+      "roc_auc": 0.978973086293242,
+      "brier": 0.07039917045922262,
+      "confusion_matrix_tn_fp_fn_tp": [
+        43603,
+        1470,
+        168,
+        1108
+      ],
+      "false_positive_fraction_of_negative_samples": 0.032613759900605686,
+      "false_negative_samples": 168,
+      "false_positive_samples": 1470
+    }
+  },
+  "test_sequences": 46349,
+  "model_size_bytes": 375715,
+  "checkpoint_reload_equal": true
+}

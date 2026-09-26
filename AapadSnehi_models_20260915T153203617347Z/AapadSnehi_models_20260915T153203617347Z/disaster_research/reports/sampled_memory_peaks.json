@@ -1,0 +1,22 @@
+{
+  "cadence_seconds": 5,
+  "rss_peak_bytes_by_command": {
+    "-m disaster_research train-flood-dl --sequence-length 90 --hidden 128": 2375516160,
+    "-m disaster_research.finish": 16097280,
+    "-m disaster_research.repeat_flood": 2792411136,
+    "-m disaster_research audit-wildfire": 688078848,
+    "-m disaster_research.flood_analysis": 2429706240,
+    "-m disaster_research.unseen_flood": 1132302336,
+    "-m disaster_research.replay flood": 545931264,
+    "-m disaster_research train-wildfire-dl --positive-weight 3": 2525728768,
+    "-m disaster_research finalize-wildfire": 2981691392,
+    "-m disaster_research.repeat_wildfire": 2590621696,
+    "-m disaster_research.replay wildfire": 968187904,
+    "-m disaster_research.verify_models": 1007669248
+  },
+  "gpu_total_used_mib_peak": 4264,
+  "gpu_note": "Device total including unrelated processes, not model-only allocation",
+  "system_available_bytes": 14885883904,
+  "active_pids": [],
+  "updated_unix": 1788765687.024105
+}

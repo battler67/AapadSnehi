@@ -1,0 +1,55 @@
+{
+  "seed": 42,
+  "selected_by": "highest validation IoU",
+  "screen_run": "wildfire-screen-unet-b16-s42",
+  "test": {
+    "n": 6727699,
+    "prevalence": 0.012534894917266661,
+    "threshold": 0.4495303297042897,
+    "accuracy": 0.9636944221196578,
+    "precision": 0.19245296081478178,
+    "recall": 0.5933405272082627,
+    "f1": 0.290636517031775,
+    "f2": 0.4188458447733208,
+    "average_precision_sklearn": 0.25389755533222835,
+    "roc_auc": 0.9146589140215301,
+    "brier": 0.023628528567002358,
+    "confusion_matrix_tn_fp_fn_tp": [
+      6433409,
+      209959,
+      34294,
+      50037
+    ],
+    "false_positive_fraction_of_negative_samples": 0.031604300710121734,
+    "false_negative_samples": 34294,
+    "false_positive_samples": 209959,
+    "iou": 0.17002616466750484,
+    "dice": 0.290636517031775,
+    "newly_active": {
+      "n": 6589342,
+      "prevalence": 0.009220647524441742,
+      "threshold": 0.4495303297042897,
+      "accuracy": 0.9689846118170828,
+      "precision": 0.13742697440506546,
+      "recall": 0.44795747062115276,
+      "f1": 0.21032823940804854,
+      "f2": 0.308527497341746,
+      "average_precision_sklearn": 0.13883250516967283,
+      "roc_auc": 0.8897947267932245,
+      "brier": 0.019218449309627683,
+      "confusion_matrix_tn_fp_fn_tp": [
+        6357754,
+        170830,
+        33541,
+        27217
+      ],
+      "false_positive_fraction_of_negative_samples": 0.02616647040154496,
+      "false_negative_samples": 33541,
+      "false_positive_samples": 170830,
+      "iou": 0.11752336045045512,
+      "dice": 0.21032823940804854
+    }
+  },
+  "model_size_bytes": 499337,
+  "checkpoint_reload_equal": true
+}

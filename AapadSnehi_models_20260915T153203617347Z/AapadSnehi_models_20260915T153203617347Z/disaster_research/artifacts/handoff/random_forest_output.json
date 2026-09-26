@@ -1,0 +1,12 @@
+{
+  "prediction_time": "2014-01-01T00:00:00+00:00",
+  "horizon": "one dataset day",
+  "operationally_validated": false,
+  "model_version": "camels-ind-random_forest-reg-v2",
+  "target_end": "2014-01-02T00:00:00+00:00",
+  "discharge_m3_s": [
+    41.75717115161002
+  ],
+  "data_quality_status": "complete_research_inputs",
+  "status": "prediction"
+}

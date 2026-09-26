@@ -1,0 +1,86 @@
+{
+  "created_at_utc": "2026-09-06T12:31:53.956631+00:00",
+  "dataset": "CAMELS-IND 2.2",
+  "geographic_unit": "CAMELS-IND catchment-day",
+  "source_rows": 14976,
+  "source_catchments": 242,
+  "date_min": "1980-01-01",
+  "date_max": "2020-12-31",
+  "overall_missing_fraction": 0.24208099350144807,
+  "negative_observations": 0,
+  "zero_observations": 556345,
+  "splits": {
+    "train": [
+      "1991-01-01",
+      "2008-12-31"
+    ],
+    "validation": [
+      "2009-01-01",
+      "2013-12-31"
+    ],
+    "test": [
+      "2014-01-01",
+      "2018-12-31"
+    ]
+  },
+  "exclusion_gap": "No arbitrary gap: validation/test use earlier observations only as causal history; sequence windows are calendar-contiguous and targets are never interpolated",
+  "selection": {
+    "criteria": "30 catchments ordered by training coverage then ID; >=95% availability each split, >=365 nonzero training days and >=20 training high-flow days. Later discharge magnitudes/event counts are descriptive only, never selection criteria.",
+    "qualifying_count": 63,
+    "selected_count": 30,
+    "selected_ids": [
+      "03005",
+      "03008",
+      "03013",
+      "03040",
+      "03048",
+      "03094",
+      "04004",
+      "04007",
+      "04012",
+      "04021",
+      "04022",
+      "04026",
+      "04028",
+      "04030",
+      "04038",
+      "04054",
+      "04061",
+      "04062",
+      "04063",
+      "04064",
+      "05002",
+      "05010",
+      "05013",
+      "05018",
+      "05022",
+      "06001",
+      "07002",
+      "07005",
+      "07007",
+      "07008"
+    ]
+  },
+  "target": {
+    "regression": "next-day observed discharge, m3/s (India-WRIS/CWC)",
+    "classification": "next-day observed discharge > catchment training-only 95th percentile",
+    "missing": "blank/NaN; never filled or used as a target"
+  },
+  "timing": {
+    "issue_time": "conceptual end of source dataset day t; local/UTC daily aggregation boundary not independently established",
+    "input_interval": "daily values through source day t",
+    "forecast_horizon": "one dataset day",
+    "target_interval": "source day t+1",
+    "availability": "retrospective: IMD/IMDAA publication timestamps unavailable; same-day operational availability is not established"
+  },
+  "provenance": "observed discharge compiled from India-WRIS/CWC; gridded forcings are catchment-area averages",
+  "uncertainty": "gauge QC and metadata limitations remain; catchment delineation and coarse/reanalysis forcings add uncertainty",
+  "excluded_leakage": {
+    "lstm_pred_streamflow.csv": "model-generated flow excluded entirely",
+    "camels_ind_hydro.csv": "full-record target-derived streamflow signatures excluded",
+    "camels_ind_clim.csv": "full-record forcing summaries excluded to avoid future-period leakage",
+    "camels_ind_anth.csv": "time-varying/future-dated human attributes excluded from primary model"
+  },
+  "retained_static": "topography/location, soil and geology numeric attributes, treated as time-invariant retrospective maps; historical publication availability is not established. Land cover excluded because of snapshot-date leakage risk.",
+  "intended_use": "retrospective model comparison and methods demonstration; not an official flood or inundation warning"
+}

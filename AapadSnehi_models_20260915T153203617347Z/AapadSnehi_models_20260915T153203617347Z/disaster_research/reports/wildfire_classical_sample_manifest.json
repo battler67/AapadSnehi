@@ -1,0 +1,27 @@
+{
+  "seed": 42,
+  "features": [
+    "elevation",
+    "pdsi",
+    "NDVI",
+    "pr",
+    "sph",
+    "th",
+    "tmmn",
+    "tmmx",
+    "vs",
+    "erc",
+    "population",
+    "PrevFireMask",
+    "active_neighbors_3",
+    "active_neighbors_5"
+  ],
+  "train_rows": 239001,
+  "train_scenes": 14979,
+  "train_positive_fraction": 0.39976401772377523,
+  "training_sampling": "up to 8 fire and remaining background pixels per scene",
+  "validation_rows": 296878,
+  "validation_source_pixels_seen": 7500385,
+  "validation_positive_fraction": 0.01358807321526014,
+  "validation_sampling": "159 uniformly sampled valid pixels per published eval scene; natural within-scene prevalence, not 50/50"
+}

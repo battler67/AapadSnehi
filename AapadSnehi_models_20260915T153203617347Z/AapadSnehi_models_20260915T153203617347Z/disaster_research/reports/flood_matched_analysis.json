@@ -1,0 +1,205 @@
+{
+  "matched_rows": 46349,
+  "catchments": 30,
+  "classical_family": "random_forest",
+  "legacy_metric_key_note": "xgboost key below denotes selected classical regressor; see classical_family for actual estimator",
+  "models": {
+    "xgboost": {
+      "n": 46349,
+      "mae": 30.903425795283724,
+      "rmse": 290.5844275921028,
+      "nse": 0.6561696094101992,
+      "kge": 0.6960262932527923,
+      "bias": -8.058604828281489,
+      "high_flow_errors": {
+        "n": 1276,
+        "mae": 560.1978044311323,
+        "rmse": 1567.0286267769454,
+        "nse": 0.5734156074040524,
+        "kge": 0.5314230671302724,
+        "bias": -395.7636748408723
+      },
+      "regression_exceedance": {
+        "n": 46349,
+        "prevalence": 0.027530259552525405,
+        "threshold": 0.5000000000000001,
+        "accuracy": 0.9858249368918424,
+        "precision": 0.7675021607605877,
+        "recall": 0.6959247648902821,
+        "f1": 0.7299630086313194,
+        "f2": 0.7091518926689028,
+        "average_precision_sklearn": 0.7779350400911155,
+        "roc_auc": 0.9727073538036902,
+        "brier": null,
+        "confusion_matrix_tn_fp_fn_tp": [
+          44804,
+          269,
+          388,
+          888
+        ],
+        "false_positive_fraction_of_negative_samples": 0.005968096199498591,
+        "false_negative_samples": 388,
+        "false_positive_samples": 269,
+        "score_interpretation": "q forecast / (q forecast + training q95); ranking score, not probability"
+      }
+    },
+    "lstm": {
+      "n": 46349,
+      "mae": 46.11065665463227,
+      "rmse": 609.7487570896354,
+      "nse": -0.5139147995536346,
+      "kge": 0.2897610873090083,
+      "bias": 8.435939165658548,
+      "high_flow_errors": {
+        "n": 1276,
+        "mae": 755.3239846151076,
+        "rmse": 2376.618297002387,
+        "nse": 0.018771906596432575,
+        "kge": 0.4593162345796983,
+        "bias": -121.34087285390095
+      },
+      "regression_exceedance": {
+        "n": 46349,
+        "prevalence": 0.027530259552525405,
+        "threshold": 0.5000000000000001,
+        "accuracy": 0.9828043754989321,
+        "precision": 0.7070008643042351,
+        "recall": 0.6410658307210031,
+        "f1": 0.6724208795725442,
+        "f2": 0.6532502795080658,
+        "average_precision_sklearn": 0.7029190396319969,
+        "roc_auc": 0.9745426732683803,
+        "brier": null,
+        "confusion_matrix_tn_fp_fn_tp": [
+          44734,
+          339,
+          458,
+          818
+        ],
+        "false_positive_fraction_of_negative_samples": 0.007521132385241719,
+        "false_negative_samples": 458,
+        "false_positive_samples": 339,
+        "score_interpretation": "q forecast / (q forecast + training q95); ranking score, not probability"
+      }
+    },
+    "persistence": {
+      "n": 46349,
+      "mae": 35.71338645225514,
+      "rmse": 335.12750333061103,
+      "nse": 0.542680490240076,
+      "kge": 0.7713321871026215,
+      "bias": -0.010916525092903532,
+      "high_flow_errors": {
+        "n": 1276,
+        "mae": 626.7307030908167,
+        "rmse": 1624.995091200198,
+        "nse": 0.5412720438198212,
+        "kge": 0.6991774306597662,
+        "bias": -232.2668026084238
+      }
+    }
+  },
+  "uncertainty": {
+    "xgboost": {
+      "macro_nse": 0.6382564422289053,
+      "basin_bootstrap_95_interval": [
+        0.5692371562217327,
+        0.7016828704868252
+      ],
+      "caveat": "Catchments may be nested or share storms; interval is descriptive, not independent-basin coverage guaranteed"
+    },
+    "lstm": {
+      "macro_nse": 0.3280032366834728,
+      "basin_bootstrap_95_interval": [
+        0.08007904922048435,
+        0.5485557490432111
+      ],
+      "caveat": "Catchments may be nested or share storms; interval is descriptive, not independent-basin coverage guaranteed"
+    },
+    "persistence": {
+      "macro_nse": 0.48162848837460015,
+      "basin_bootstrap_95_interval": [
+        0.37267685161489617,
+        0.588037512367603
+      ],
+      "caveat": "Catchments may be nested or share storms; interval is descriptive, not independent-basin coverage guaranteed"
+    }
+  },
+  "episodes": {
+    "observed_episodes": 484,
+    "missed_episodes": 90,
+    "alert_episodes": 759,
+    "false_alert_episodes": 424,
+    "criterion": "Any same-target-day overlap counts; this measures episode detection, not pre-onset lead time"
+  },
+  "full_test_baselines": {
+    "persistence": {
+      "n": 52071,
+      "mae": 35.708496018865375,
+      "rmse": 328.1289684136728,
+      "nse": 0.5454205862280247,
+      "kge": 0.7733015971893399,
+      "bias": 0.3551904006529604
+    },
+    "seasonal_training_median": {
+      "n": 52071,
+      "mae": 83.11015474901609,
+      "rmse": 442.16763958138245,
+      "nse": 0.17454286026895094,
+      "kge": 0.16378079320026362,
+      "bias": -11.126254628570159
+    }
+  },
+  "frozen_missing_input_stress": {
+    "weather_outage": {
+      "n": 52071,
+      "mae": 37.7262809554539,
+      "rmse": 316.7973268845702,
+      "nse": 0.5762754426524224,
+      "kge": 0.4789303889616444,
+      "bias": -26.588566234411104
+    },
+    "discharge_outage": {
+      "n": 52071,
+      "mae": 92.53534639780796,
+      "rmse": 491.49181355666667,
+      "nse": -0.019889674294718773,
+      "kge": -0.4648657458187302,
+      "bias": -77.43259026474811
+    }
+  },
+  "sensor_compatible_ablation": {
+    "features": [
+      "prcp(mm/day)",
+      "tavg(C)",
+      "rel_hum(%)",
+      "sm_lvl1(kg/m2)",
+      "discharge",
+      "discharge_lag_1",
+      "discharge_lag_2",
+      "discharge_lag_3",
+      "discharge_lag_7",
+      "discharge_lag_14",
+      "discharge_lag_30",
+      "rain_sum_3",
+      "rain_sum_7",
+      "rain_sum_14",
+      "rain_sum_30",
+      "discharge_trend_3",
+      "discharge_trend_7",
+      "season_sin",
+      "season_cos",
+      "catchment_id"
+    ],
+    "test": {
+      "n": 52071,
+      "mae": 32.3678043621174,
+      "rmse": 293.8519168539634,
+      "nse": 0.6354327317851586,
+      "kge": 0.6669495609531533,
+      "bias": -10.761521310652496
+    },
+    "training_seconds": 114.1009967,
+    "limitation": "Discharge requires a rating curve; rainfall is catchment-averaged and soil moisture a layer-integrated reanalysis estimate, not point sensors"
+  }
+}

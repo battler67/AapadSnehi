@@ -1,0 +1,52 @@
+{
+  "records": [
+    {
+      "dataset": "wildfire",
+      "name": "next-day-wildfire-spread.zip",
+      "bytes": 2235125032,
+      "uncompressed_payload_bytes": 3955889585,
+      "md5": null,
+      "url": "https://www.kaggle.com/api/v1/datasets/download/fantineh/next-day-wildfire-spread?datasetVersionNumber=2",
+      "version": "Kaggle dataset version 2 (published 2021-11-17)",
+      "path": "C:\\Users\\SRI RAMANA\\AapadSnehi\\disaster_research\\data\\raw\\wildfire\\next-day-wildfire-spread.zip",
+      "checked_at_utc": "2026-09-06T09:29:23.428214+00:00",
+      "status": "complete",
+      "actual_bytes": 2235125032,
+      "sha256": "917b2839f3f7dab67cc0492d21ae43c1b78aa4f994aba694dc7993897332fb6a",
+      "license": "CC BY 4.0; retain attribution and review upstream conditions",
+      "terms_url": "https://www.kaggle.com/datasets/fantineh/next-day-wildfire-spread"
+    },
+    {
+      "dataset": "flood",
+      "name": "00_CAMELS_IND_Data_Description.pdf",
+      "bytes": 543856,
+      "md5": "19cf924c9a0a5417163ba773432ac274",
+      "url": "https://zenodo.org/api/records/14999580/files/00_CAMELS_IND_Data_Description.pdf/content",
+      "version": "CAMELS-IND 2.2 / Zenodo 14999580",
+      "path": "C:\\Users\\SRI RAMANA\\AapadSnehi\\disaster_research\\data\\raw\\flood\\00_CAMELS_IND_Data_Description.pdf",
+      "checked_at_utc": "2026-09-06T12:17:42.331576+00:00",
+      "status": "complete",
+      "actual_bytes": 543856,
+      "sha256": "f741128d5c080b581832707dc2db98711bd00d57d44e3adafb371bb98c3b9ce4",
+      "md5_verified": true,
+      "license": "CC BY 4.0; retain attribution and review upstream conditions",
+      "terms_url": "https://zenodo.org/records/14999580"
+    },
+    {
+      "dataset": "flood",
+      "name": "CAMELS_IND_Catchments_Streamflow_Sufficient.zip",
+      "bytes": 178141731,
+      "md5": "3993c25ba7d7b86df0541de91e094f39",
+      "url": "https://zenodo.org/api/records/14999580/files/CAMELS_IND_Catchments_Streamflow_Sufficient.zip/content",
+      "version": "CAMELS-IND 2.2 / Zenodo 14999580",
+      "path": "C:\\Users\\SRI RAMANA\\AapadSnehi\\disaster_research\\data\\raw\\flood\\CAMELS_IND_Catchments_Streamflow_Sufficient.zip",
+      "checked_at_utc": "2026-09-06T12:17:42.339983+00:00",
+      "status": "complete",
+      "actual_bytes": 178141731,
+      "sha256": "4f2794bbef42bcd6707afb45e1e0ae8f21f4a2a17bf8c82006dce4273c82c664",
+      "md5_verified": true,
+      "license": "CC BY 4.0; retain attribution and review upstream conditions",
+      "terms_url": "https://zenodo.org/records/14999580"
+    }
+  ]
+}

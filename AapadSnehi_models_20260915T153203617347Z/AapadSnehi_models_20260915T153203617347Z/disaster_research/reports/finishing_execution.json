@@ -1,0 +1,189 @@
+{
+  "real_data_smoke": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.smoke"
+    ],
+    "started_unix": 1788755860.7728028,
+    "timeout_seconds": 300,
+    "duration_seconds": 27.120129585266113
+  },
+  "flood_lstm_128": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research",
+      "train-flood-dl",
+      "--sequence-length",
+      "90",
+      "--hidden",
+      "128"
+    ],
+    "started_unix": 1788755887.9148993,
+    "timeout_seconds": 1800,
+    "duration_seconds": 271.4771387577057
+  },
+  "flood_dl_repeats": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.repeat_flood"
+    ],
+    "started_unix": 1788756159.3954742,
+    "timeout_seconds": 2400,
+    "duration_seconds": 416.09109902381897
+  },
+  "flood_analysis": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.flood_analysis"
+    ],
+    "started_unix": 1788756575.4915016,
+    "timeout_seconds": 1200,
+    "duration_seconds": 144.00845789909363
+  },
+  "flood_unseen": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.unseen_flood"
+    ],
+    "started_unix": 1788756719.5037818,
+    "timeout_seconds": 900,
+    "duration_seconds": 2989.62095618248
+  },
+  "flood_replay": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.replay",
+      "flood"
+    ],
+    "started_unix": 1788759709.1274564,
+    "timeout_seconds": 300,
+    "duration_seconds": 8.25985336303711
+  },
+  "wildfire_weight3": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research",
+      "train-wildfire-dl",
+      "--positive-weight",
+      "3"
+    ],
+    "started_unix": 1788759717.3893204,
+    "timeout_seconds": 3600,
+    "duration_seconds": 1250.7584693431854
+  },
+  "wildfire_classical_final": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research",
+      "finalize-wildfire"
+    ],
+    "started_unix": 1788760968.1489303,
+    "timeout_seconds": 3600,
+    "duration_seconds": 1630.902818441391
+  },
+  "wildfire_dl_final": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.repeat_wildfire"
+    ],
+    "started_unix": 1788762599.056676,
+    "timeout_seconds": 7200,
+    "duration_seconds": 2966.499735593796
+  },
+  "wildfire_replay": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.replay",
+      "wildfire"
+    ],
+    "started_unix": 1788765565.563296,
+    "timeout_seconds": 600,
+    "duration_seconds": 51.464531660079956
+  },
+  "registry": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.complete_registry"
+    ],
+    "started_unix": 1788765617.0336971,
+    "timeout_seconds": 300,
+    "duration_seconds": 2.0797340869903564
+  },
+  "verify_models": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.verify_models"
+    ],
+    "started_unix": 1788765619.1173139,
+    "timeout_seconds": 300,
+    "duration_seconds": 61.84348821640015
+  },
+  "environment": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.environment"
+    ],
+    "started_unix": 1788765680.9672964,
+    "timeout_seconds": 300,
+    "duration_seconds": 0.2820920944213867
+  },
+  "report": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.report"
+    ],
+    "started_unix": 1788765681.25083,
+    "timeout_seconds": 300,
+    "duration_seconds": 4.735537528991699
+  },
+  "verify_dl_adapters": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.verify_dl_adapters"
+    ],
+    "started_unix": 1788890045.04256,
+    "timeout_seconds": 300,
+    "duration_seconds": 4.191895246505737
+  },
+  "report_verified_adapters": {
+    "status": "completed",
+    "command": [
+      "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+      "-m",
+      "disaster_research.report"
+    ],
+    "started_unix": 1788890049.236342,
+    "timeout_seconds": 300,
+    "duration_seconds": 4.866234064102173
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-09-08T17:54:08.097947+00:00",
+  "device": "cpu",
+  "torch_threads": 8,
+  "scope": "First eligible held-out sequence and first published test scene; latency is not an edge-device benchmark",
+  "flood_lstm": {
+    "checkpoint_reload_adapter_equal": true,
+    "catchment": "03005",
+    "one_sequence_forward": {
+      "repeats": 10,
+      "median_seconds": 0.0004645999999866035,
+      "min_seconds": 0.00044449999995777034,
+      "max_seconds": 0.0005095000001347216
+    },
+    "load_preprocess_predict": {
+      "repeats": 3,
+      "median_seconds": 0.00346769999987373,
+      "min_seconds": 0.0033005999998749758,
+      "max_seconds": 0.003684499999963009
+    },
+    "missing_rainfall_rejected": true
+  },
+  "wildfire_unet": {
+    "checkpoint_reload_adapter_equal": true,
+    "test_scene_index": 0,
+    "timestamp_note": "Illustrative adapter-test timestamps; not historical evidence",
+    "one_map_forward": {
+      "repeats": 10,
+      "median_seconds": 0.0018760000000384025,
+      "min_seconds": 0.0017975999999180203,
+      "max_seconds": 0.0021072999998068553
+    },
+    "load_preprocess_predict": {
+      "repeats": 3,
+      "median_seconds": 0.010249500000099943,
+      "min_seconds": 0.008287299999665265,
+      "max_seconds": 0.012290599999687402
+    },
+    "missing_rainfall_rejected": true
+  },
+  "missing_input_scope": "Frozen adapters reject absent rainfall; no target changes and no imputed wildfire outage performance claim"
+}

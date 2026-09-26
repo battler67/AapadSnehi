@@ -1,0 +1,33 @@
+[
+  {
+    "recorded_unix": 1788755578.564575,
+    "failures": {
+      "baseline-wildfire": {
+        "status": "failed",
+        "command": [
+          "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+          "-m",
+          "disaster_research",
+          "baseline-wildfire"
+        ],
+        "timeout_seconds": 900,
+        "started_unix": 1788698325.407865,
+        "exit_code": 1,
+        "duration_seconds": 4.4869043827056885
+      },
+      "wildfire-unet": {
+        "status": "failed",
+        "command": [
+          "C:\\Users\\SRI RAMANA\\AapadSnehi\\.venv\\Scripts\\python.exe",
+          "-m",
+          "disaster_research",
+          "train-wildfire-dl"
+        ],
+        "timeout_seconds": 3600,
+        "started_unix": 1788698329.8954444,
+        "exit_code": 1,
+        "duration_seconds": 406.67353534698486
+      }
+    }
+  }
+]

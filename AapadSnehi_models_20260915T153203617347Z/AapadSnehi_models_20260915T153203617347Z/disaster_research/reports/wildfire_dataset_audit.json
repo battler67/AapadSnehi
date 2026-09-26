@@ -1,0 +1,210 @@
+{
+  "created_at_utc": "2026-09-07T04:47:58.933539+00:00",
+  "dataset": "Next Day Wildfire Spread, Kaggle version 2",
+  "geographic_unit": "64 x 64 scene on approximately 1 km CONUS grid; pixel is evaluation unit within scene",
+  "issue_time": "dataset day t after current active-fire/environmental inputs are assembled",
+  "input_observation_interval": "current-day aligned channels; PrevFireMask is current fire state",
+  "input_availability": "retrospective; archive lacks per-channel publication timestamps needed for operational replay",
+  "forecast_horizon": "next supplied day",
+  "target_interval": "next-day satellite active-fire mask",
+  "label_provenance_uncertainty": "MODIS active-fire detections; -1 target pixels are unknown and masked. Active fire is not an exact burned-area perimeter.",
+  "intended_use": "predict spread of an existing fire, not ignition before a fire starts; research comparison only",
+  "features": [
+    "elevation",
+    "pdsi",
+    "NDVI",
+    "pr",
+    "sph",
+    "th",
+    "tmmn",
+    "tmmx",
+    "vs",
+    "erc",
+    "population",
+    "PrevFireMask"
+  ],
+  "units_and_train_statistics": {
+    "elevation": [
+      0.0,
+      3141.0,
+      657.0,
+      649.0
+    ],
+    "pdsi": [
+      -6.1,
+      7.9,
+      0.0,
+      2.7
+    ],
+    "NDVI": [
+      -9821.0,
+      9996.0,
+      5158.0,
+      2467.0
+    ],
+    "pr": [
+      0.0,
+      44.5,
+      1.7,
+      4.5
+    ],
+    "sph": [
+      0.0,
+      1.0,
+      0.0072,
+      0.0043
+    ],
+    "th": [
+      0.0,
+      360.0,
+      190.3,
+      72.6
+    ],
+    "tmmn": [
+      253.2,
+      298.9,
+      281.1,
+      9.0
+    ],
+    "tmmx": [
+      253.2,
+      315.1,
+      295.2,
+      9.8
+    ],
+    "vs": [
+      0.0,
+      10.0,
+      3.9,
+      1.4
+    ],
+    "erc": [
+      0.0,
+      106.0,
+      37.0,
+      21.0
+    ],
+    "population": [
+      0.0,
+      2534.0,
+      26.0,
+      155.0
+    ],
+    "PrevFireMask": [
+      -1.0,
+      1.0,
+      0.0,
+      1.0
+    ]
+  },
+  "observed_min": {
+    "elevation": -45.0,
+    "pdsi": -152.90792846679688,
+    "NDVI": -9567.0,
+    "pr": -167.44830322265625,
+    "sph": -0.1289878934621811,
+    "th": -505870.0625,
+    "tmmn": -444.6930236816406,
+    "tmmx": 0.0,
+    "vs": -82.6530990600586,
+    "erc": -1196.088623046875,
+    "population": 0.0,
+    "PrevFireMask": -1.0,
+    "FireMask": -1.0
+  },
+  "observed_max": {
+    "elevation": 4203.0,
+    "pdsi": 80.9964828491211,
+    "NDVI": 9966.0,
+    "pr": 136.81561279296875,
+    "sph": 0.08553028106689453,
+    "th": 37735.62890625,
+    "tmmn": 716.6276245117188,
+    "tmmx": 1229.8487548828125,
+    "vs": 103.22010040283203,
+    "erc": 2470.88232421875,
+    "population": 27103.60546875,
+    "PrevFireMask": 1.0,
+    "FireMask": 1.0
+  },
+  "nonfinite_values": {
+    "elevation": 0,
+    "pdsi": 0,
+    "NDVI": 0,
+    "pr": 0,
+    "sph": 0,
+    "th": 0,
+    "tmmn": 0,
+    "tmmx": 0,
+    "vs": 0,
+    "erc": 0,
+    "population": 0,
+    "PrevFireMask": 0,
+    "FireMask": 0
+  },
+  "splits": {
+    "train": {
+      "files": 15,
+      "file_scene_counts": {
+        "next_day_wildfire_spread_train_00.tfrecord": 1000,
+        "next_day_wildfire_spread_train_01.tfrecord": 1000,
+        "next_day_wildfire_spread_train_02.tfrecord": 1000,
+        "next_day_wildfire_spread_train_03.tfrecord": 1000,
+        "next_day_wildfire_spread_train_04.tfrecord": 1000,
+        "next_day_wildfire_spread_train_05.tfrecord": 1000,
+        "next_day_wildfire_spread_train_06.tfrecord": 1000,
+        "next_day_wildfire_spread_train_07.tfrecord": 1000,
+        "next_day_wildfire_spread_train_08.tfrecord": 1000,
+        "next_day_wildfire_spread_train_09.tfrecord": 1000,
+        "next_day_wildfire_spread_train_10.tfrecord": 1000,
+        "next_day_wildfire_spread_train_11.tfrecord": 1000,
+        "next_day_wildfire_spread_train_12.tfrecord": 1000,
+        "next_day_wildfire_spread_train_13.tfrecord": 1000,
+        "next_day_wildfire_spread_train_14.tfrecord": 979
+      },
+      "all_unknown_target_scenes": 35,
+      "no_known_current_fire_scenes": 0,
+      "scenes": 14979,
+      "valid_target_pixels": 59913073,
+      "positive_target_pixels": 658270,
+      "target_prevalence": 0.010987084571676034,
+      "unknown_target_pixels": 1440911,
+      "current_positive_pixels": 503555,
+      "newly_active_pixels": 482818
+    },
+    "eval": {
+      "files": 2,
+      "file_scene_counts": {
+        "next_day_wildfire_spread_eval_00.tfrecord": 1000,
+        "next_day_wildfire_spread_eval_01.tfrecord": 877
+      },
+      "all_unknown_target_scenes": 7,
+      "no_known_current_fire_scenes": 0,
+      "scenes": 1877,
+      "valid_target_pixels": 7500385,
+      "positive_target_pixels": 102594,
+      "target_prevalence": 0.013678497837111028,
+      "unknown_target_pixels": 187807,
+      "current_positive_pixels": 73827,
+      "newly_active_pixels": 83088
+    },
+    "test": {
+      "files": 2,
+      "file_scene_counts": {
+        "next_day_wildfire_spread_test_00.tfrecord": 1000,
+        "next_day_wildfire_spread_test_01.tfrecord": 689
+      },
+      "all_unknown_target_scenes": 2,
+      "no_known_current_fire_scenes": 0,
+      "scenes": 1689,
+      "valid_target_pixels": 6727699,
+      "positive_target_pixels": 84331,
+      "target_prevalence": 0.012534894917266661,
+      "unknown_target_pixels": 190445,
+      "current_positive_pixels": 65135,
+      "newly_active_pixels": 60758
+    }
+  },
+  "split_audit": "Published train/eval/test files preserved. Paper describes random whole-week 8:1:1 allocation during 2012-2020, with a one-day buffer between weeks. This is not an unseen-region or independent-fire split: long fires and recurring geography may cross splits. TFRecords expose no dates, coordinates or event IDs for stronger event grouping. Scene counts are not independent fire counts.",
+  "augmentation_policy": "No augmentation in the initial screen; any future augmentation must remain within source split."
+}
