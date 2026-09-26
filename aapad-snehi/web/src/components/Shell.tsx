@@ -88,11 +88,6 @@ export function Shell({ children, path, navigate }: ShellProps) {
           </nav>
         )}
       </header>
-      {import.meta.env.VITE_HOSTED_DEMO === "true" && (
-        <aside role="note" style={{ padding: "12px 20px", background: "#fff3cd", color: "#513b00", textAlign: "center" }}>
-          DEMO ONLY — Use fictional details and photos. Reports may reset after a restart. No emergency dispatch or real notifications.
-        </aside>
-      )}
       <main>{children}</main>
       <footer className="site-footer">
         <div>
